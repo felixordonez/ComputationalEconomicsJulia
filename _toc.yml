@@ -5,3 +5,4 @@ format: jb-book
 root: intro
 chapters:
 - file: 0_software_installation
+- file: 1_github
