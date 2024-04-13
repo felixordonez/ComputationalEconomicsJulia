@@ -9,6 +9,9 @@ logo: logo.svg
 # See https://jupyterbook.org/content/execute.html
 execute:
   execute_notebooks: force
+  executor: jupyter-cache
+  kernel_name: julia-1.10-1.10
+
 
 # Define the name of the latex output file for PDF builds
 latex:

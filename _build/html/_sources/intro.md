@@ -3,10 +3,6 @@
 Teachers: Rodrigo Caputo and Félix Ordóñez
 
 
-```{tableofcontents}
-```
-
-
 ## Objectives of this Course 
 Este curso tiene por objetivo estudiar modelos económicos y entender sus fundamentos en base a aplicaciones computacionales desarrolladas en Julia. El enfoque es práctico: comenzar con un problema económico, seleccionar una técnica numérica apropiada para analizarlo, aplicar la técnica al problema y presentar sus hallazgos.
 
@@ -30,9 +26,12 @@ La metodología de aprendizaje se realizará mediante tres partes, primero se tr
 
 ## References
 
-### Textbooks
+### 1. Textbooks
 
-### Julia 
+### 2. Julia 
 
 
 
+
+```{tableofcontents}
+```
