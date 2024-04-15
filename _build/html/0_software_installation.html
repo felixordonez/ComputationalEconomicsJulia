@@ -409,7 +409,7 @@ document.write(`
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Images</span><span class="p">,</span><span class="w"> </span><span class="n">FileIO</span><span class="p">,</span><span class="w"> </span><span class="n">Plots</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Images</span><span class="p">,</span><span class="w"> </span><span class="n">FileIO</span><span class="p">,</span><span class="w"> </span><span class="n">ImageView</span><span class="p">,</span><span class="w"> </span><span class="n">Plots</span>
 <span class="n">load</span><span class="p">(</span><span class="s">&quot;images/benchmark.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -426,11 +426,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">UndefVarError</span>: `imshow` not defined
-
-<span class="ne">Stacktrace</span>:
- <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span><span class="mi">3</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dict{String, Any} with 4 entries:
+  &quot;gui&quot;         =&gt; Dict{String, Any}(&quot;window&quot;=&gt;GtkWindowLeaf(accessible-role=GT…
+  &quot;roi&quot;         =&gt; Dict{String, Any}(&quot;redraw&quot;=&gt;ObserverFunction[ObserverFunctio…
+  &quot;annotations&quot; =&gt; Observable(Dict{UInt64, Any}())
+  &quot;clim&quot;        =&gt; Observable(CLim{RGB{Float64}}(RGB{Float64}(0.0,0.0,0.0), RGB…
 </pre></div>
 </div>
 </div>
