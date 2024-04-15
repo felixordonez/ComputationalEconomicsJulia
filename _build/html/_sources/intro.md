@@ -24,6 +24,38 @@ The learning methodology will be conducted in three parts: first, the basic know
 - Evaluation part 2 (project/exam): 30%
 
 ## Syllabus
+### 1. Introduction to Programming
+1. Introduction to programming.
+2. Why Julia?
+3. Installation, IDE, and Github.
+4. Values, variables, and types.
+5. Fundamental commands: variables, arithmetic operations, logical operations, Boolean operators and functions, standard mathematical operations, arrays, vectors, matrices, sparse matrices, text, I/O.
+6. Programming structures: functions, recursion, MapReduce, loops, conditionals.
+7. Numerical Methods (intro).
+
+### 2. Discussion of Economic Models, Programming, and Visualization of Results
+**Basic Models**
+1. Solow Model: add trends to demographics and tech growth. Study transitional dynamics.
+2. Neoclassical Model: Tax experiments (Japan paper).
+3. Overlapping Generations Model (OLG): pension reform, add demographic and tech growth.
+
+**Intermediate**
+1. Adding uncertainty, RBC (Book ABC for RBC): linearization, DSGE and using Dynare in Julia. Shock analysis, var decomposition.
+2. Infinite horizon: RBC with constraints, open economy models. Simulation, compute stationary distribution, cost of business cycle.
+3. Life Cycle models: adding labor: tax policy/welfare analysis, compute MPC.
+4. Industry Dynamics: Hopenhayn.
+**Advance**
+1. Solution techniques: VFI, PFI, endogenous grid, time iteration, collocation, linearization.
+2. Portfolio Choice Models: investment over the cycle, effect of taxation.
+3. Investment models: Whited survey.
+4. Advanced: Aiyagari, Hopenhayn: tax and GE.
+
+### 3. Third Part: Optimization and Performance in Model Solving
+1. Modular programming. Why do we avoid global variables?
+2. Use of structures, types, and evaluation of allocations.
+3. Parallelization.
+
+
 
 
 ## References
