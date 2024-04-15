@@ -178,6 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0_software_installation.html">Software installation: Julia and Visual Studio Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_github.html">Github and VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_first_codes.html">First codes</a></li>
 </ul>
 
     </div>
@@ -376,7 +377,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives-of-this-course">Objectives of this Course</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syllabus">Syllabus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syllabus">Syllabus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-programming">1. Introduction to Programming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-of-economic-models-programming-and-visualization-of-results">2. Discussion of Economic Models, Programming, and Visualization of Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-part-optimization-and-performance-in-model-solving">3. Third Part: Optimization and Performance in Model Solving</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia">Julia</a></li>
 </ul>
@@ -422,6 +428,47 @@ document.write(`
 </section>
 <section id="syllabus">
 <h2>Syllabus<a class="headerlink" href="#syllabus" title="Permalink to this heading">#</a></h2>
+<section id="introduction-to-programming">
+<h3>1. Introduction to Programming<a class="headerlink" href="#introduction-to-programming" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Introduction to programming.</p></li>
+<li><p>Why Julia?</p></li>
+<li><p>Installation, IDE, and Github.</p></li>
+<li><p>Values, variables, and types.</p></li>
+<li><p>Fundamental commands: variables, arithmetic operations, logical operations, Boolean operators and functions, standard mathematical operations, arrays, vectors, matrices, sparse matrices, text, I/O.</p></li>
+<li><p>Programming structures: functions, recursion, MapReduce, loops, conditionals.</p></li>
+<li><p>Numerical Methods (intro).</p></li>
+</ol>
+</section>
+<section id="discussion-of-economic-models-programming-and-visualization-of-results">
+<h3>2. Discussion of Economic Models, Programming, and Visualization of Results<a class="headerlink" href="#discussion-of-economic-models-programming-and-visualization-of-results" title="Permalink to this heading">#</a></h3>
+<p><strong>Basic Models</strong></p>
+<ol class="arabic simple">
+<li><p>Solow Model: add trends to demographics and tech growth. Study transitional dynamics.</p></li>
+<li><p>Neoclassical Model: Tax experiments (Japan paper).</p></li>
+<li><p>Overlapping Generations Model (OLG): pension reform, add demographic and tech growth.</p></li>
+</ol>
+<p><strong>Intermediate</strong></p>
+<ol class="arabic simple">
+<li><p>Adding uncertainty, RBC (Book ABC for RBC): linearization, DSGE and using Dynare in Julia. Shock analysis, var decomposition.</p></li>
+<li><p>Infinite horizon: RBC with constraints, open economy models. Simulation, compute stationary distribution, cost of business cycle.</p></li>
+<li><p>Life Cycle models: adding labor: tax policy/welfare analysis, compute MPC.</p></li>
+<li><p>Industry Dynamics: Hopenhayn.
+<strong>Advance</strong></p></li>
+<li><p>Solution techniques: VFI, PFI, endogenous grid, time iteration, collocation, linearization.</p></li>
+<li><p>Portfolio Choice Models: investment over the cycle, effect of taxation.</p></li>
+<li><p>Investment models: Whited survey.</p></li>
+<li><p>Advanced: Aiyagari, Hopenhayn: tax and GE.</p></li>
+</ol>
+</section>
+<section id="third-part-optimization-and-performance-in-model-solving">
+<h3>3. Third Part: Optimization and Performance in Model Solving<a class="headerlink" href="#third-part-optimization-and-performance-in-model-solving" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Modular programming. Why do we avoid global variables?</p></li>
+<li><p>Use of structures, types, and evaluation of allocations.</p></li>
+<li><p>Parallelization.</p></li>
+</ol>
+</section>
 </section>
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
@@ -442,6 +489,7 @@ document.write(`
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="0_software_installation.html">Software installation: Julia and Visual Studio Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_github.html">Github and VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_first_codes.html">First codes</a></li>
 </ul>
 </div>
 </section>
@@ -506,7 +554,12 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectives-of-this-course">Objectives of this Course</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">Prerequisites</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">Evaluation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syllabus">Syllabus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#syllabus">Syllabus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-programming">1. Introduction to Programming</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-of-economic-models-programming-and-visualization-of-results">2. Discussion of Economic Models, Programming, and Visualization of Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#third-part-optimization-and-performance-in-model-solving">3. Third Part: Optimization and Performance in Model Solving</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia">Julia</a></li>
 </ul>
