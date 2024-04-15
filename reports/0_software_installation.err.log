@@ -24,9 +24,9 @@ imshow(img)
 ------------------
 
 
-UndefVarError: `plot` not defined
+UndefVarError: `imshow` not defined
 
 Stacktrace:
  [1] top-level scope
-   @ In[2]:2
+   @ In[2]:3
 
