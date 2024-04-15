@@ -60,8 +60,6 @@ The learning methodology will be conducted in three parts: first, the basic know
 
 ## References
 
-### Julia
-
 1. [Quantitative Economics with Julia](https://julia.quantecon.org/intro.html) by J. Perla, T. Sargent and J. Stachurski. *This material will accompany us during much of the course*. 
 2. [Numerical methods for macroeconomists](https://www.jeremygreenwood.net/Book/NM4M.pdf) J. Greenwood and R. Marto (2022). *Complete book of numerical methods with Julia examples.*
 3. [Numerical Methods in Economics](https://mitpress.mit.edu/9780262547741/numerical-methods-in-economics/)  K. Judd (1998). *The classics*.
