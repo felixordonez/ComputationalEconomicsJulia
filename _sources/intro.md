@@ -70,5 +70,8 @@ The learning methodology will be conducted in three parts: first, the basic know
 8. [Dynamic Economics: Quantitative Methods and Applications](https://mitpress.mit.edu/9780262547888/dynamic-economics/) J. Adda and R. Cooper (2023). 
 9. [The ABCs of RBCs](https://www.hup.harvard.edu/books/9780674028142) G. McCandless (2008). *A good introduction to Real Business Cycle (RBC) and New-Keynesian models*.
 
+
+![fishy](../images/cat1.gif)
+
 ```{tableofcontents}
 ```
