@@ -351,7 +351,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -367,6 +369,25 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-types">Variables and types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#allowed-variable-names">Allowed Variable Names</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stylistic-conventions">Stylistic Conventions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types">Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-operations">Mathematical Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-mathematical-operations">Standard mathematical operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-vectors-and-matrices">Arrays: Vectors and Matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operations">Logical operations</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -378,6 +399,307 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="first-codes">
 <h1>First codes<a class="headerlink" href="#first-codes" title="Permalink to this heading">#</a></h1>
+<section id="variables-and-types">
+<h2>Variables and types<a class="headerlink" href="#variables-and-types" title="Permalink to this heading">#</a></h2>
+<p>A variable, in Julia, is a name associated (or bound) to a value. It’s useful when you want to store a value (that you obtained after some math, for example) for later use. For example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Assign the value 10 to the variable x</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+
+<span class="c"># Doing math with x&#39;s value</span>
+<span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="c"># Reassign x&#39;s value</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="c"># You can assign values of other types, like strings of text</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello World!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&quot;Hello World!&quot;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Hello World!
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="allowed-variable-names">
+<h2>Allowed Variable Names<a class="headerlink" href="#allowed-variable-names" title="Permalink to this heading">#</a></h2>
+<p>Para los nombres de variables pueden ocupar letras, número y símbolos. Deben tener cuidado con algunas excepciones que están reservadas, por ejemplo el número pi, o funciones específicas que no se pueden modificar o que no queremos modificar, por ejemplo if, else, while, sum, mean, etc.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">🍎</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span>
+<span class="n">α</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span>
+<span class="n">Δ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span>
+<span class="n">🌵</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span>
+
+<span class="n">println</span><span class="p">((</span><span class="nb">π</span><span class="p">,</span><span class="w"> </span><span class="n">🍎</span><span class="p">,</span><span class="w"> </span><span class="n">α</span><span class="p">,</span><span class="w"> </span><span class="n">Δ</span><span class="p">,</span><span class="w"> </span><span class="n">🌵</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(π, 10, 0.1, 5, 20)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="stylistic-conventions">
+<h2>Stylistic Conventions<a class="headerlink" href="#stylistic-conventions" title="Permalink to this heading">#</a></h2>
+<p>As suggested by <a class="reference external" href="http://web.mit.edu/julia_v0.6.2/julia/share/doc/julia/html/en/manual/variables.html">Julia’s recommendations</a>:</p>
+<p>While Julia imposes few restrictions on valid names, it has become useful to adopt the following conventions:</p>
+<ul class="simple">
+<li><p>Names of variables are in lower case.</p></li>
+<li><p>Word separation can be indicated by underscores (‘_’), but use of underscores is discouraged unless the name would be hard to read otherwise.</p></li>
+<li><p>Names of Types and Modules begin with a capital letter and word separation is shown with upper camel case instead of underscores.</p></li>
+<li><p>Names of functions and macros are in lower case, without underscores.</p></li>
+<li><p>Functions that write to their arguments have names that end in !. These are sometimes called “mutating” or “in-place” functions because they are intended to produce changes in their arguments after the function is called, not just return a value.</p></li>
+</ul>
+<section id="types">
+<h3>Types<a class="headerlink" href="#types" title="Permalink to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Types</span></code> will be a fundamental part of programming in Julia; they are flexible and will provide flexibility when programming and solving a problem.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Types</span></code> correspond to a category of values with specific characteristics. So far, we have seen two different types: integer and string.</p>
+<p>As the course progresses, we will introduce different <code class="docutils literal notranslate"><span class="pre">types</span></code>. The basic ones we will use include: <code class="docutils literal notranslate"><span class="pre">integers</span></code>, <code class="docutils literal notranslate"><span class="pre">floats</span></code>, <code class="docutils literal notranslate"><span class="pre">strings</span></code>, <code class="docutils literal notranslate"><span class="pre">arrays</span></code>, and <code class="docutils literal notranslate"><span class="pre">booleans</span></code>.</p>
+<p>To see what type a variable is, you can use the function <code class="docutils literal notranslate"><span class="pre">typeof(variable)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="w"> </span>
+<span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span>
+<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span>
+<span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]</span>
+<span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">]</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;a: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;b: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">b</span><span class="p">)))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;c: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">c</span><span class="p">)))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;d: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">d</span><span class="p">,</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">d</span><span class="p">)))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;e: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">e</span><span class="p">)))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;f: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">f</span><span class="p">)))</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;g: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="w"> </span><span class="n">typeof</span><span class="p">(</span><span class="n">g</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a: (10, Int64)
+b: (10.0, Float64)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c: (&quot;Hello&quot;, String)
+d: 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([1, 2, 3], Vector{Int64})
+e: (true, Bool)
+f: 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([10.0, 10.0], Vector{Float64})
+g: ([10.0, 10.0], Vector{Any})
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="mathematical-operations">
+<h2>Mathematical Operations<a class="headerlink" href="#mathematical-operations" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Standard mathematical operations</p></li>
+<li><p>Arrays: Vectors and Matrices</p></li>
+<li><p>Logical operations</p></li>
+</ul>
+<section id="standard-mathematical-operations">
+<h3>Standard mathematical operations<a class="headerlink" href="#standard-mathematical-operations" title="Permalink to this heading">#</a></h3>
+<p>Basic mathematical operations:</p>
+<ul class="simple">
+<li><p>Addition (+)</p></li>
+<li><p>Subtraction (-)</p></li>
+<li><p>Times (*)</p></li>
+<li><p>Divide (/)</p></li>
+<li><p>Inverse divide (\ )</p></li>
+<li><p>Power (^)</p></li>
+<li><p>Remainder (%)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;+: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">+</span><span class="n">a</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;-: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">-</span><span class="n">a</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;*: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">a</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;/: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">/</span><span class="n">a</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;^: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">^</span><span class="n">a</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;% :&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="o">%</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+: 20
+-: 0
+*: 100
+/: 1.0
+^: 10000000000
+% :0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="arrays-vectors-and-matrices">
+<h3>Arrays: Vectors and Matrices<a class="headerlink" href="#arrays-vectors-and-matrices" title="Permalink to this heading">#</a></h3>
+<p><a class="reference external" href="https://docs.julialang.org/en/v1/manual/arrays/">https://docs.julialang.org/en/v1/manual/arrays/</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3-element Vector{Int64}:
+ 1
+ 2
+ 3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1×3 Matrix{Int64}:
+ 1  2  3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5×5 Matrix{Float64}:
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0
+ 0.0  0.0  0.0  0.0  0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="o">*</span><span class="n">v</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="o">.*</span><span class="n">v</span>
+<span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">w</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;x: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;y: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;z: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;sum: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sum</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x: 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3.0 3.0 3.0; 3.0 3.0 3.0; 3.0 3.0 3.0]
+y: [1.0 1.0 1.0; 1.0 1.0 1.0; 1.0 1.0 1.0]
+z: [18.0, 18.0, 18.0]
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum: 54.0
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="logical-operations">
+<h3>Logical operations<a class="headerlink" href="#logical-operations" title="Permalink to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">true</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">false</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="nb">true</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">false</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>false
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>true
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple">
+<li><p>Create a variable xmin equal to 1 and a variable xmax equal to 100.</p></li>
+<li><p>Create a variable x that contains equidistant values from xmin to xmax.</p></li>
+<li><p>Check the type of x.</p></li>
+<li><p>Create a variable y that indicates whether each element in x is greater than 50. <em>Hint: It should be of type BitVector.</em></p></li>
+<li><p>Create a variable z that divides each element of x by each element of y.</p></li>
+<li><p>Determine the maximum value of the vector z and find out which function can be used to obtain it.</p></li>
+<li><p>With the variables A = rand(3,3) and B = ones(3,3), test the operations * , ^, .* , -, inv(), det(), and the difference between / and \ .</p></li>
+</ol>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -389,16 +711,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.9"
         },
         kernelOptions: {
-            name: "python3",
+            name: "julia-1.9",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.9'</script>
 
                 </article>
               
@@ -426,7 +748,31 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-and-types">Variables and types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#allowed-variable-names">Allowed Variable Names</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stylistic-conventions">Stylistic Conventions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types">Types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-operations">Mathematical Operations</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-mathematical-operations">Standard mathematical operations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-vectors-and-matrices">Arrays: Vectors and Matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logical-operations">Logical operations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
