@@ -65,6 +65,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '2_first_codes';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Solow-Swan Growth Model" href="3_solow.html" />
     <link rel="prev" title="Github and VSCode" href="1_github.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -179,6 +180,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="0_software_installation.html">Software installation: Julia and Visual Studio Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_github.html">Github and VSCode</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">First codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_solow.html">The Solow-Swan Growth Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_fundamental_types.html">Arrays, Tuples, Ranges, and Other Fundamental Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_functions_conditionals.html">Functions, conditionals, loops, and intro to numerica methods</a></li>
 </ul>
 
     </div>
@@ -496,8 +500,13 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a: (10, Int64)
-b: (10.0, Float64)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a: 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(10, Int64)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b: (10.0, Float64)
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c: (&quot;Hello&quot;, String)
@@ -505,8 +514,12 @@ d:
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([1, 2, 3], Vector{Int64})
-e: (true, Bool)
-f: 
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>e: (true, Bool)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f: 
 </pre></div>
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>([10.0, 10.0], Vector{Float64})
@@ -552,7 +565,9 @@ g: ([10.0, 10.0], Vector{Any})
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>+: 20
 -: 0
 *: 100
-/: 1.0
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/: 1.0
 ^: 10000000000
 % :0
 </pre></div>
@@ -629,10 +644,10 @@ g: ([10.0, 10.0], Vector{Any})
 </div>
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[3.0 3.0 3.0; 3.0 3.0 3.0; 3.0 3.0 3.0]
 y: [1.0 1.0 1.0; 1.0 1.0 1.0; 1.0 1.0 1.0]
-z: [18.0, 18.0, 18.0]
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sum: 54.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>z: [18.0, 18.0, 18.0]
+sum: 54.0
 </pre></div>
 </div>
 </div>
@@ -740,6 +755,15 @@ z: [18.0, 18.0, 18.0]
         <p class="prev-next-subtitle">previous</p>
         <p class="prev-next-title">Github and VSCode</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="3_solow.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Solow-Swan Growth Model</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
