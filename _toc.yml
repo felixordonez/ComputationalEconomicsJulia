@@ -7,3 +7,6 @@ chapters:
 - file: 0_software_installation
 - file: 1_github
 - file: 2_first_codes
+- file: 3_solow
+- file: 4_fundamental_types
+- file: 5_functions_conditionals
