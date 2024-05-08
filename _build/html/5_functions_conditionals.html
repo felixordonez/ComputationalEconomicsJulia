@@ -417,13 +417,25 @@ document.write(`
 </ol>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<p>Functions are a fundamental part of programming in Julia, allowing us to store processes in an organized and efficient way. Generally, we declare them using the <code class="docutils literal notranslate"><span class="pre">function</span></code> command, followed by () and the respective <code class="docutils literal notranslate"><span class="pre">inputs</span></code>. The most common syntax will be using function function_name(input) -&gt; output. Here’s an example:”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span>
 <span class="k">end</span>
-
-<span class="k">function</span><span class="w"> </span><span class="n">f2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>f1 (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Functions in Julia do not necessarily require explicitly declaring the return, but we do it to maintain some structure. As we see in the following example, the functions <code class="docutils literal notranslate"><span class="pre">f1</span></code> and <code class="docutils literal notranslate"><span class="pre">f2</span></code> are equivalent (<span class="math notranslate nohighlight">\(\approx\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">f2</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
 <span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span>
 <span class="k">end</span>
 
@@ -438,6 +450,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">&#64;time</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;btime</span></code> (from BenchmarkTools) macros, we can test the performance and space usage of our functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">BenchmarkTools</span>
@@ -447,10 +460,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  23.092 ns (0 allocations: 0 bytes)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  18.737 ns (0 allocations: 0 bytes)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  23.695 ns (0 allocations: 0 bytes)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  19.138 ns (0 allocations: 0 bytes)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
@@ -458,6 +471,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>An important detail is that depending on how we declare our functions, they will work for scalars or arrays. For example, the function f1 does not work correctly with vectors.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
@@ -485,11 +499,12 @@ document.write(`
  <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">f1</span><span class="p">(</span><span class="n">a</span><span class="p">::</span><span class="n">StepRangeLen</span><span class="p">{</span><span class="n">Float64</span><span class="p">,</span> <span class="n">Base</span><span class="o">.</span><span class="n">TwicePrecision</span><span class="p">{</span><span class="n">Float64</span><span class="p">},</span> <span class="n">Base</span><span class="o">.</span><span class="n">TwicePrecision</span><span class="p">{</span><span class="n">Float64</span><span class="p">},</span> <span class="n">Int64</span><span class="p">},</span> <span class="n">b</span><span class="p">::</span><span class="n">Vector</span><span class="p">{</span><span class="n">Float64</span><span class="p">})</span>
    <span class="o">@</span> <span class="n">Main</span> <span class="o">.</span>\<span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="mi">2</span>
  <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
-   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">5</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span><span class="mi">5</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>To solve this, in this specific case, we can perform an <em>element-by-element</em> multiplication using <code class="docutils literal notranslate"><span class="pre">.*</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
@@ -510,9 +525,15 @@ document.write(`
 </div>
 </div>
 </div>
+<p>A very commonly used type of function in Julia is called in-place. We create these functions to reduce the number of allocations that our code generates.</p>
+<ul class="simple">
+<li><p>These functions conventionally carry the <code class="docutils literal notranslate"><span class="pre">!</span></code> sign,</p></li>
+<li><p>The variable that is the output explicitly goes as an input.</p></li>
+<li><p>Additionally, this array is completely replaced in the function <code class="docutils literal notranslate"><span class="pre">.=</span></code>. In this way, the element is not recreated, but replaced, which reduces the number of allocations and potentially reduces the function’s execution time (check with <code class="docutils literal notranslate"><span class="pre">&#64;btime</span></code>).</p></li>
+</ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">f1!</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="c">#a,b-&gt;c</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">f1!</span><span class="p">(</span><span class="n">out</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="c">#a,b-&gt;out</span>
 <span class="w">     </span><span class="n">out</span><span class="w"> </span><span class="o">.=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">b</span>
 <span class="k">end</span>
 
@@ -531,6 +552,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>To provide more detail to the functions, we can explicitly specify the types of the inputs that the function has. The purpose of this is to have full control over what goes in and what comes out, thus avoiding potential errors. Julia slows down when we are constantly changing types, for example, if in a loop the matrix A changes from an array to a float successively, this process will potentially be slow.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">f3</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span><span class="w"> </span><span class="n">b</span><span class="o">::</span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">})</span>
@@ -551,6 +573,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>In Julia, we can create functions without the need to explicitly use the word function. We use this mainly when our function is something simple, for example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
@@ -563,6 +586,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Similarly, we can apply a function element by element, using the map() function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">map</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span><span class="w">  </span><span class="c"># apply function to each element</span>
@@ -570,9 +594,10 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Finally, in this section on functions, we will use predefined values. For example, if we have a model f(x) that includes a parameter <span class="math notranslate nohighlight">\(\alpha\)</span>, we can give it an initial value or a default value and define it at the beginning of the function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">α</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">exp</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">α</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -594,6 +619,7 @@ document.write(`
 </section>
 <section id="loops">
 <h2>Loops<a class="headerlink" href="#loops" title="Permalink to this heading">#</a></h2>
+<p>We use iterations for repetitive processes, for example, iterating from 1 to N, iterating over the elements of a vector, or over the rows and columns of a matrix. This makes it easy to repeat a process and is quite efficient in Julia.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span>
@@ -623,6 +649,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>You can create an empty element <code class="docutils literal notranslate"><span class="pre">Any[]</span></code> and place the result in it using the <code class="docutils literal notranslate"><span class="pre">push!()</span></code> function (notice, this is an in-place function).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
@@ -637,14 +664,13 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Matrix multiplication can be done directly (A*B) or through iteration of the rows and columns.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Crear matrices A y B</span>
-<span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c"># Matriz de 100x10 con valores aleatorios</span>
-<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w">  </span><span class="c"># Matriz de 10x100 con valores aleatorios</span>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span>
+<span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span><span class="w">  </span>
 
-<span class="c"># Multiplicación directa de matrices</span>
-<span class="n">C1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">;</span><span class="w">  </span><span class="c"># Resultado es una matriz de 100x100</span>
+<span class="n">C1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">B</span><span class="p">;</span><span class="w">  </span>
 </pre></div>
 </div>
 </div>
@@ -673,6 +699,7 @@ document.write(`
 </div>
 </div>
 </div>
+<p>Loops are a fundamental tool in Julia, and we will use them throughout the entire course. A simple example (from <a class="reference external" href="https://julia.quantecon.org/introduction_dynamics/scalar_dynam.html">QuantEcon</a>) is, for instance, to plot the time series of capital.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Plots</span>
@@ -700,10 +727,80 @@ document.write(`
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600" height="400" viewBox="0 0 2400 1600">
+<defs>
+  <clipPath id="clip480">
+    <rect x="0" y="0" width="2400" height="1600"/>
+  </clipPath>
+</defs>
+<path clip-path="url(#clip480)" d="M0 1600 L2400 1600 L2400 0 L0 0  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<defs>
+  <clipPath id="clip481">
+    <rect x="480" y="0" width="1681" height="1600"/>
+  </clipPath>
+</defs>
+<path clip-path="url(#clip480)" d="M186.274 1423.18 L2352.76 1423.18 L2352.76 47.2441 L186.274 47.2441  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<defs>
+  <clipPath id="clip482">
+    <rect x="186" y="47" width="2167" height="1377"/>
+  </clipPath>
+</defs>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="247.59,1423.18 247.59,47.2441 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="656.36,1423.18 656.36,47.2441 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1065.13,1423.18 1065.13,47.2441 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1473.9,1423.18 1473.9,47.2441 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="1882.67,1423.18 1882.67,47.2441 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="2291.44,1423.18 2291.44,47.2441 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="186.274,1423.18 2352.76,1423.18 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="247.59,1423.18 247.59,1404.28 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="656.36,1423.18 656.36,1404.28 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1065.13,1423.18 1065.13,1404.28 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1473.9,1423.18 1473.9,1404.28 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="1882.67,1423.18 1882.67,1404.28 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="2291.44,1423.18 2291.44,1404.28 "/>
+<path clip-path="url(#clip480)" d="M247.59 1454.1 Q243.978 1454.1 242.15 1457.66 Q240.344 1461.2 240.344 1468.33 Q240.344 1475.44 242.15 1479.01 Q243.978 1482.55 247.59 1482.55 Q251.224 1482.55 253.029 1479.01 Q254.858 1475.44 254.858 1468.33 Q254.858 1461.2 253.029 1457.66 Q251.224 1454.1 247.59 1454.1 M247.59 1450.39 Q253.4 1450.39 256.455 1455 Q259.534 1459.58 259.534 1468.33 Q259.534 1477.06 256.455 1481.67 Q253.4 1486.25 247.59 1486.25 Q241.779 1486.25 238.701 1481.67 Q235.645 1477.06 235.645 1468.33 Q235.645 1459.58 238.701 1455 Q241.779 1450.39 247.59 1450.39 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M646.742 1481.64 L654.381 1481.64 L654.381 1455.28 L646.07 1456.95 L646.07 1452.69 L654.334 1451.02 L659.01 1451.02 L659.01 1481.64 L666.649 1481.64 L666.649 1485.58 L646.742 1485.58 L646.742 1481.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M1059.78 1481.64 L1076.1 1481.64 L1076.1 1485.58 L1054.16 1485.58 L1054.16 1481.64 Q1056.82 1478.89 1061.4 1474.26 Q1066.01 1469.61 1067.19 1468.27 Q1069.44 1465.74 1070.32 1464.01 Q1071.22 1462.25 1071.22 1460.56 Q1071.22 1457.8 1069.27 1456.07 Q1067.35 1454.33 1064.25 1454.33 Q1062.05 1454.33 1059.6 1455.09 Q1057.17 1455.86 1054.39 1457.41 L1054.39 1452.69 Q1057.21 1451.55 1059.67 1450.97 Q1062.12 1450.39 1064.16 1450.39 Q1069.53 1450.39 1072.72 1453.08 Q1075.92 1455.77 1075.92 1460.26 Q1075.92 1462.39 1075.11 1464.31 Q1074.32 1466.2 1072.21 1468.8 Q1071.63 1469.47 1068.53 1472.69 Q1065.43 1475.88 1059.78 1481.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M1478.15 1466.95 Q1481.5 1467.66 1483.38 1469.93 Q1485.28 1472.2 1485.28 1475.53 Q1485.28 1480.65 1481.76 1483.45 Q1478.24 1486.25 1471.76 1486.25 Q1469.58 1486.25 1467.27 1485.81 Q1464.98 1485.39 1462.52 1484.54 L1462.52 1480.02 Q1464.47 1481.16 1466.78 1481.74 Q1469.1 1482.32 1471.62 1482.32 Q1476.02 1482.32 1478.31 1480.58 Q1480.62 1478.84 1480.62 1475.53 Q1480.62 1472.48 1478.47 1470.77 Q1476.34 1469.03 1472.52 1469.03 L1468.49 1469.03 L1468.49 1465.19 L1472.71 1465.19 Q1476.16 1465.19 1477.99 1463.82 Q1479.81 1462.43 1479.81 1459.84 Q1479.81 1457.18 1477.92 1455.77 Q1476.04 1454.33 1472.52 1454.33 Q1470.6 1454.33 1468.4 1454.75 Q1466.2 1455.16 1463.56 1456.04 L1463.56 1451.88 Q1466.23 1451.14 1468.54 1450.77 Q1470.88 1450.39 1472.94 1450.39 Q1478.26 1450.39 1481.37 1452.83 Q1484.47 1455.23 1484.47 1459.35 Q1484.47 1462.22 1482.82 1464.21 Q1481.18 1466.18 1478.15 1466.95 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M1885.68 1455.09 L1873.87 1473.54 L1885.68 1473.54 L1885.68 1455.09 M1884.45 1451.02 L1890.33 1451.02 L1890.33 1473.54 L1895.26 1473.54 L1895.26 1477.43 L1890.33 1477.43 L1890.33 1485.58 L1885.68 1485.58 L1885.68 1477.43 L1870.08 1477.43 L1870.08 1472.92 L1884.45 1451.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M2281.72 1451.02 L2300.07 1451.02 L2300.07 1454.96 L2286 1454.96 L2286 1463.43 Q2287.02 1463.08 2288.04 1462.92 Q2289.06 1462.73 2290.07 1462.73 Q2295.86 1462.73 2299.24 1465.9 Q2302.62 1469.08 2302.62 1474.49 Q2302.62 1480.07 2299.15 1483.17 Q2295.68 1486.25 2289.36 1486.25 Q2287.18 1486.25 2284.91 1485.88 Q2282.67 1485.51 2280.26 1484.77 L2280.26 1480.07 Q2282.34 1481.2 2284.57 1481.76 Q2286.79 1482.32 2289.26 1482.32 Q2293.27 1482.32 2295.61 1480.21 Q2297.94 1478.1 2297.94 1474.49 Q2297.94 1470.88 2295.61 1468.77 Q2293.27 1466.67 2289.26 1466.67 Q2287.39 1466.67 2285.51 1467.08 Q2283.66 1467.5 2281.72 1468.38 L2281.72 1451.02 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M1268.58 1522.27 L1268.58 1532.4 L1280.64 1532.4 L1280.64 1536.95 L1268.58 1536.95 L1268.58 1556.3 Q1268.58 1560.66 1269.75 1561.9 Q1270.96 1563.14 1274.62 1563.14 L1280.64 1563.14 L1280.64 1568.04 L1274.62 1568.04 Q1267.84 1568.04 1265.27 1565.53 Q1262.69 1562.98 1262.69 1556.3 L1262.69 1536.95 L1258.39 1536.95 L1258.39 1532.4 L1262.69 1532.4 L1262.69 1522.27 L1268.58 1522.27 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="186.274,1384.24 2352.76,1384.24 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="186.274,1099.85 2352.76,1099.85 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="186.274,815.463 2352.76,815.463 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="186.274,531.075 2352.76,531.075 "/>
+<polyline clip-path="url(#clip482)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:2; stroke-opacity:0.1; fill:none" points="186.274,246.687 2352.76,246.687 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="186.274,1423.18 186.274,47.2441 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="186.274,1384.24 205.172,1384.24 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="186.274,1099.85 205.172,1099.85 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="186.274,815.463 205.172,815.463 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="186.274,531.075 205.172,531.075 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="186.274,246.687 205.172,246.687 "/>
+<path clip-path="url(#clip480)" d="M63.9319 1370.04 Q60.3208 1370.04 58.4921 1373.6 Q56.6865 1377.14 56.6865 1384.27 Q56.6865 1391.38 58.4921 1394.94 Q60.3208 1398.49 63.9319 1398.49 Q67.5661 1398.49 69.3717 1394.94 Q71.2004 1391.38 71.2004 1384.27 Q71.2004 1377.14 69.3717 1373.6 Q67.5661 1370.04 63.9319 1370.04 M63.9319 1366.33 Q69.742 1366.33 72.7976 1370.94 Q75.8763 1375.52 75.8763 1384.27 Q75.8763 1393 72.7976 1397.61 Q69.742 1402.19 63.9319 1402.19 Q58.1217 1402.19 55.043 1397.61 Q51.9875 1393 51.9875 1384.27 Q51.9875 1375.52 55.043 1370.94 Q58.1217 1366.33 63.9319 1366.33 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M84.0938 1395.64 L88.978 1395.64 L88.978 1401.52 L84.0938 1401.52 L84.0938 1395.64 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M103.191 1397.58 L119.51 1397.58 L119.51 1401.52 L97.566 1401.52 L97.566 1397.58 Q100.228 1394.83 104.811 1390.2 Q109.418 1385.55 110.598 1384.2 Q112.844 1381.68 113.723 1379.94 Q114.626 1378.19 114.626 1376.5 Q114.626 1373.74 112.682 1372 Q110.76 1370.27 107.658 1370.27 Q105.459 1370.27 103.006 1371.03 Q100.575 1371.8 97.7974 1373.35 L97.7974 1368.62 Q100.621 1367.49 103.075 1366.91 Q105.529 1366.33 107.566 1366.33 Q112.936 1366.33 116.131 1369.02 Q119.325 1371.7 119.325 1376.19 Q119.325 1378.32 118.515 1380.25 Q117.728 1382.14 115.621 1384.74 Q115.043 1385.41 111.941 1388.62 Q108.839 1391.82 103.191 1397.58 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M129.371 1366.96 L147.728 1366.96 L147.728 1370.89 L133.654 1370.89 L133.654 1379.37 Q134.672 1379.02 135.691 1378.86 Q136.709 1378.67 137.728 1378.67 Q143.515 1378.67 146.894 1381.84 Q150.274 1385.01 150.274 1390.43 Q150.274 1396.01 146.802 1399.11 Q143.33 1402.19 137.01 1402.19 Q134.834 1402.19 132.566 1401.82 Q130.32 1401.45 127.913 1400.71 L127.913 1396.01 Q129.996 1397.14 132.219 1397.7 Q134.441 1398.25 136.918 1398.25 Q140.922 1398.25 143.26 1396.15 Q145.598 1394.04 145.598 1390.43 Q145.598 1386.82 143.26 1384.71 Q140.922 1382.61 136.918 1382.61 Q135.043 1382.61 133.168 1383.02 Q131.316 1383.44 129.371 1384.32 L129.371 1366.96 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M62.9365 1085.65 Q59.3254 1085.65 57.4967 1089.21 Q55.6912 1092.76 55.6912 1099.89 Q55.6912 1106.99 57.4967 1110.56 Q59.3254 1114.1 62.9365 1114.1 Q66.5707 1114.1 68.3763 1110.56 Q70.205 1106.99 70.205 1099.89 Q70.205 1092.76 68.3763 1089.21 Q66.5707 1085.65 62.9365 1085.65 M62.9365 1081.95 Q68.7467 1081.95 71.8022 1086.55 Q74.8809 1091.14 74.8809 1099.89 Q74.8809 1108.61 71.8022 1113.22 Q68.7467 1117.8 62.9365 1117.8 Q57.1264 1117.8 54.0477 1113.22 Q50.9921 1108.61 50.9921 1099.89 Q50.9921 1091.14 54.0477 1086.55 Q57.1264 1081.95 62.9365 1081.95 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M83.0984 1111.25 L87.9827 1111.25 L87.9827 1117.13 L83.0984 1117.13 L83.0984 1111.25 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M98.2141 1082.57 L116.57 1082.57 L116.57 1086.51 L102.496 1086.51 L102.496 1094.98 Q103.515 1094.63 104.534 1094.47 Q105.552 1094.28 106.571 1094.28 Q112.358 1094.28 115.737 1097.45 Q119.117 1100.63 119.117 1106.04 Q119.117 1111.62 115.645 1114.72 Q112.172 1117.8 105.853 1117.8 Q103.677 1117.8 101.409 1117.43 Q99.1632 1117.06 96.7558 1116.32 L96.7558 1111.62 Q98.8391 1112.76 101.061 1113.31 Q103.284 1113.87 105.76 1113.87 Q109.765 1113.87 112.103 1111.76 Q114.441 1109.65 114.441 1106.04 Q114.441 1102.43 112.103 1100.33 Q109.765 1098.22 105.76 1098.22 Q103.885 1098.22 102.01 1098.64 Q100.159 1099.05 98.2141 1099.93 L98.2141 1082.57 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M138.33 1085.65 Q134.719 1085.65 132.89 1089.21 Q131.084 1092.76 131.084 1099.89 Q131.084 1106.99 132.89 1110.56 Q134.719 1114.1 138.33 1114.1 Q141.964 1114.1 143.769 1110.56 Q145.598 1106.99 145.598 1099.89 Q145.598 1092.76 143.769 1089.21 Q141.964 1085.65 138.33 1085.65 M138.33 1081.95 Q144.14 1081.95 147.195 1086.55 Q150.274 1091.14 150.274 1099.89 Q150.274 1108.61 147.195 1113.22 Q144.14 1117.8 138.33 1117.8 Q132.519 1117.8 129.441 1113.22 Q126.385 1108.61 126.385 1099.89 Q126.385 1091.14 129.441 1086.55 Q132.519 1081.95 138.33 1081.95 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M63.9319 801.261 Q60.3208 801.261 58.4921 804.826 Q56.6865 808.368 56.6865 815.497 Q56.6865 822.604 58.4921 826.169 Q60.3208 829.71 63.9319 829.71 Q67.5661 829.71 69.3717 826.169 Q71.2004 822.604 71.2004 815.497 Q71.2004 808.368 69.3717 804.826 Q67.5661 801.261 63.9319 801.261 M63.9319 797.558 Q69.742 797.558 72.7976 802.164 Q75.8763 806.747 75.8763 815.497 Q75.8763 824.224 72.7976 828.831 Q69.742 833.414 63.9319 833.414 Q58.1217 833.414 55.043 828.831 Q51.9875 824.224 51.9875 815.497 Q51.9875 806.747 55.043 802.164 Q58.1217 797.558 63.9319 797.558 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M84.0938 826.863 L88.978 826.863 L88.978 832.743 L84.0938 832.743 L84.0938 826.863 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M97.9826 798.183 L120.205 798.183 L120.205 800.173 L107.658 832.743 L102.774 832.743 L114.58 802.118 L97.9826 802.118 L97.9826 798.183 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M129.371 798.183 L147.728 798.183 L147.728 802.118 L133.654 802.118 L133.654 810.59 Q134.672 810.243 135.691 810.081 Q136.709 809.896 137.728 809.896 Q143.515 809.896 146.894 813.067 Q150.274 816.238 150.274 821.655 Q150.274 827.233 146.802 830.335 Q143.33 833.414 137.01 833.414 Q134.834 833.414 132.566 833.044 Q130.32 832.673 127.913 831.933 L127.913 827.233 Q129.996 828.368 132.219 828.923 Q134.441 829.479 136.918 829.479 Q140.922 829.479 143.26 827.372 Q145.598 825.266 145.598 821.655 Q145.598 818.044 143.26 815.937 Q140.922 813.831 136.918 813.831 Q135.043 813.831 133.168 814.247 Q131.316 814.664 129.371 815.544 L129.371 798.183 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M53.7467 544.42 L61.3856 544.42 L61.3856 518.054 L53.0754 519.721 L53.0754 515.462 L61.3393 513.795 L66.0152 513.795 L66.0152 544.42 L73.654 544.42 L73.654 548.355 L53.7467 548.355 L53.7467 544.42 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M83.0984 542.475 L87.9827 542.475 L87.9827 548.355 L83.0984 548.355 L83.0984 542.475 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M108.168 516.874 Q104.557 516.874 102.728 520.438 Q100.922 523.98 100.922 531.11 Q100.922 538.216 102.728 541.781 Q104.557 545.323 108.168 545.323 Q111.802 545.323 113.608 541.781 Q115.436 538.216 115.436 531.11 Q115.436 523.98 113.608 520.438 Q111.802 516.874 108.168 516.874 M108.168 513.17 Q113.978 513.17 117.033 517.776 Q120.112 522.36 120.112 531.11 Q120.112 539.836 117.033 544.443 Q113.978 549.026 108.168 549.026 Q102.358 549.026 99.2789 544.443 Q96.2234 539.836 96.2234 531.11 Q96.2234 522.36 99.2789 517.776 Q102.358 513.17 108.168 513.17 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M138.33 516.874 Q134.719 516.874 132.89 520.438 Q131.084 523.98 131.084 531.11 Q131.084 538.216 132.89 541.781 Q134.719 545.323 138.33 545.323 Q141.964 545.323 143.769 541.781 Q145.598 538.216 145.598 531.11 Q145.598 523.98 143.769 520.438 Q141.964 516.874 138.33 516.874 M138.33 513.17 Q144.14 513.17 147.195 517.776 Q150.274 522.36 150.274 531.11 Q150.274 539.836 147.195 544.443 Q144.14 549.026 138.33 549.026 Q132.519 549.026 129.441 544.443 Q126.385 539.836 126.385 531.11 Q126.385 522.36 129.441 517.776 Q132.519 513.17 138.33 513.17 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M54.7421 260.032 L62.381 260.032 L62.381 233.666 L54.0708 235.333 L54.0708 231.074 L62.3347 229.407 L67.0106 229.407 L67.0106 260.032 L74.6494 260.032 L74.6494 263.967 L54.7421 263.967 L54.7421 260.032 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M84.0938 258.088 L88.978 258.088 L88.978 263.967 L84.0938 263.967 L84.0938 258.088 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M103.191 260.032 L119.51 260.032 L119.51 263.967 L97.566 263.967 L97.566 260.032 Q100.228 257.277 104.811 252.648 Q109.418 247.995 110.598 246.652 Q112.844 244.129 113.723 242.393 Q114.626 240.634 114.626 238.944 Q114.626 236.19 112.682 234.453 Q110.76 232.717 107.658 232.717 Q105.459 232.717 103.006 233.481 Q100.575 234.245 97.7974 235.796 L97.7974 231.074 Q100.621 229.94 103.075 229.361 Q105.529 228.782 107.566 228.782 Q112.936 228.782 116.131 231.467 Q119.325 234.152 119.325 238.643 Q119.325 240.773 118.515 242.694 Q117.728 244.592 115.621 247.185 Q115.043 247.856 111.941 251.074 Q108.839 254.268 103.191 260.032 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M129.371 229.407 L147.728 229.407 L147.728 233.342 L133.654 233.342 L133.654 241.814 Q134.672 241.467 135.691 241.305 Q136.709 241.12 137.728 241.12 Q143.515 241.12 146.894 244.291 Q150.274 247.463 150.274 252.879 Q150.274 258.458 146.802 261.56 Q143.33 264.638 137.01 264.638 Q134.834 264.638 132.566 264.268 Q130.32 263.898 127.913 263.157 L127.913 258.458 Q129.996 259.592 132.219 260.148 Q134.441 260.703 136.918 260.703 Q140.922 260.703 143.26 258.597 Q145.598 256.49 145.598 252.879 Q145.598 249.268 143.26 247.162 Q140.922 245.055 136.918 245.055 Q135.043 245.055 133.168 245.472 Q131.316 245.889 129.371 246.768 L129.371 229.407 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><polyline clip-path="url(#clip482)" style="stroke:#009af9; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="247.59,1384.24 656.36,1047.69 1065.13,726.891 1473.9,458.66 1882.67,247.361 2291.44,86.1857 "/>
+<circle clip-path="url(#clip482)" cx="247.59" cy="1384.24" r="14.4" fill="#0000ff" fill-rule="evenodd" fill-opacity="0.7" stroke="#000000" stroke-opacity="0.7" stroke-width="3.2"/>
+<circle clip-path="url(#clip482)" cx="656.36" cy="1047.69" r="14.4" fill="#0000ff" fill-rule="evenodd" fill-opacity="0.7" stroke="#000000" stroke-opacity="0.7" stroke-width="3.2"/>
+<circle clip-path="url(#clip482)" cx="1065.13" cy="726.891" r="14.4" fill="#0000ff" fill-rule="evenodd" fill-opacity="0.7" stroke="#000000" stroke-opacity="0.7" stroke-width="3.2"/>
+<circle clip-path="url(#clip482)" cx="1473.9" cy="458.66" r="14.4" fill="#0000ff" fill-rule="evenodd" fill-opacity="0.7" stroke="#000000" stroke-opacity="0.7" stroke-width="3.2"/>
+<circle clip-path="url(#clip482)" cx="1882.67" cy="247.361" r="14.4" fill="#0000ff" fill-rule="evenodd" fill-opacity="0.7" stroke="#000000" stroke-opacity="0.7" stroke-width="3.2"/>
+<circle clip-path="url(#clip482)" cx="2291.44" cy="86.1857" r="14.4" fill="#0000ff" fill-rule="evenodd" fill-opacity="0.7" stroke="#000000" stroke-opacity="0.7" stroke-width="3.2"/>
+<path clip-path="url(#clip480)" d="M258.49 196.789 L539.443 196.789 L539.443 93.1086 L258.49 93.1086  Z" fill="#ffffff" fill-rule="evenodd" fill-opacity="1"/>
+<polyline clip-path="url(#clip480)" style="stroke:#000000; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="258.49,196.789 539.443,196.789 539.443,93.1086 258.49,93.1086 258.49,196.789 "/>
+<polyline clip-path="url(#clip480)" style="stroke:#009af9; stroke-linecap:round; stroke-linejoin:round; stroke-width:4; stroke-opacity:1; fill:none" points="282.562,144.949 426.994,144.949 "/>
+<path clip-path="url(#clip480)" d="M451.066 126.21 L455.349 126.21 L455.349 147.483 L468.057 136.303 L473.497 136.303 L459.747 148.432 L474.075 162.229 L468.52 162.229 L455.349 149.567 L455.349 162.229 L451.066 162.229 L451.066 126.21 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M498.381 170.099 L498.381 173.409 L473.751 173.409 L473.751 170.099 L498.381 170.099 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /><path clip-path="url(#clip480)" d="M506.598 128.942 L506.598 136.303 L515.371 136.303 L515.371 139.613 L506.598 139.613 L506.598 153.687 Q506.598 156.858 507.455 157.761 Q508.334 158.664 510.996 158.664 L515.371 158.664 L515.371 162.229 L510.996 162.229 Q506.066 162.229 504.191 160.4 Q502.316 158.548 502.316 153.687 L502.316 139.613 L499.191 139.613 L499.191 136.303 L502.316 136.303 L502.316 128.942 L506.598 128.942 Z" fill="#000000" fill-rule="nonzero" fill-opacity="1" /></svg>
+</div></div>
 </div>
 </section>
 <section id="conditionals">
 <h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this heading">#</a></h2>
+<p>Conditional evaluation allows portions of code to be evaluated or not evaluated depending on the value of a boolean expression. Here is the anatomy of the if-elseif-else conditional syntax:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is less than y&quot;</span><span class="p">)</span>
+<span class="k">elseif</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is greater than y&quot;</span><span class="p">)</span>
+<span class="k">else</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x is equal to y&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+</div>
 <p>Consider the equation <span class="math notranslate nohighlight">\(v = p+\beta v\)</span> where <span class="math notranslate nohighlight">\(p,\beta\)</span> are given, and <span class="math notranslate nohighlight">\(v\)</span> is a scalar to solve.</p>
 <p><em>This simple example can be solve like</em> <span class="math notranslate nohighlight">\(v=p/(1-\beta)\)</span>.</p>
 <p>However, we are going to try <span class="math notranslate nohighlight">\(v=f(v):=p+\beta v\)</span></p>
@@ -788,9 +885,18 @@ document.write(`
 </section>
 <section id="numerical-methods">
 <h2>Numerical methods<a class="headerlink" href="#numerical-methods" title="Permalink to this heading">#</a></h2>
-<p><span class="math notranslate nohighlight">\(f(x,y)=(a-x)^2 + b(y-x^2)^2\)</span></p>
+<p>One of the most basic numerical problems encountered in computational economics is to find the solution to a nonlinear equation or a whole system of nonlinear equations. A nonlinear equation system usually can be defined by a function</p>
+<div class="math notranslate nohighlight">
+\[f(x):R^n\rightarrow R^n\]</div>
+<p>that maps an n dimensional vector x into the space Rn. We call the solution to the linear equation system f (x) = 0 a root of f . The root of a nonlinear equation system usually has no closed-form solution. Consequently, various numerical methods addressing the issue of root-finding have been invented.</p>
+<p>In Julia, we find several packages for this purpose, some of them are NSolve, Optim, Optimization, ForwardDiff, Roots, among others.</p>
 <section id="solving-non-linear-systems">
 <h3>Solving non-linear systems<a class="headerlink" href="#solving-non-linear-systems" title="Permalink to this heading">#</a></h3>
+<p>Example:
+\begin{align}
+x^2 + 2y^2 &amp;= 1 \nonumber \
+2x^2 + y^2 &amp;= 1 \nonumber
+\end{align}</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">NLsolve</span>
@@ -809,6 +915,8 @@ document.write(`
 </section>
 <section id="nonlinear-optimization">
 <h3>Nonlinear Optimization<a class="headerlink" href="#nonlinear-optimization" title="Permalink to this heading">#</a></h3>
+<p>Example: Rosenbrock function</p>
+<p><span class="math notranslate nohighlight">\(f(x,y)=(a-x)^2 + b(y-x^2)^2\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Optim</span>
@@ -869,7 +977,20 @@ u: 2-element Vector{Float64}:
 <li><p>Compare the results of the three methods</p></li>
 <li><p>Plot the 3D plane of f(x,y),x,y.</p></li>
 <li><p>Add to the plot the solution of the 3 methods.</p></li>
+<li><p>Solve the following problem using someone of the non-linear techniques.</p></li>
 </ol>
+<p>Two firms compete in a simple Cournot duopoly with the inverse demand and the cost functions
+\begin{align}
+P(q) &amp;= q^{-1/\eta} \nonumber \
+C_k(q_k) &amp;= \frac{c_k}{2} q_k^2 \quad \text{for firm } k = 1, 2 \nonumber\
+q &amp;= q_1 + q_2.
+\end{align}</p>
+<p>Given the profit functions of the two firms</p>
+<div class="math notranslate nohighlight">
+\[\pi_k(q_1, q_2) = P(q_1 + q_2)q_k - C_k(q_k)\]</div>
+<p>each firm <span class="math notranslate nohighlight">\(k\)</span> takes the other firm’s output as given and chooses its own output level in order to solve</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial \pi_k}{\partial q_k} = f(q) = \left(q_1 + q_2\right)^{-1/\eta} - \frac{1}{\eta} \left(q_1 + q_2\right)^{-1/\eta -1}q_k - c_kq_k = 0 \quad \text{with } k = 1, 2.\]</div>
 </section>
 </section>
 
