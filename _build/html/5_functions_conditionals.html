@@ -460,10 +460,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  23.594 ns (0 allocations: 0 bytes)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  23.394 ns (0 allocations: 0 bytes)
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  20.281 ns (0 allocations: 0 bytes)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  24.068 ns (0 allocations: 0 bytes)
 </pre></div>
 </div>
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
@@ -892,11 +892,11 @@ document.write(`
 <p>In Julia, we find several packages for this purpose, some of them are NSolve, Optim, Optimization, ForwardDiff, Roots, among others.</p>
 <section id="solving-non-linear-systems">
 <h3>Solving non-linear systems<a class="headerlink" href="#solving-non-linear-systems" title="Permalink to this heading">#</a></h3>
-<p>Example:
-\begin{align}
-x^2 + 2y^2 &amp;= 1 \nonumber \
-2x^2 + y^2 &amp;= 1 \nonumber
-\end{align}</p>
+<p>Example:</p>
+<div class="math notranslate nohighlight">
+\[x^2 + 2y^2 = 1 \]</div>
+<div class="math notranslate nohighlight">
+\[2x^2 + y^2 = 1 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">NLsolve</span>
@@ -979,12 +979,13 @@ u: 2-element Vector{Float64}:
 <li><p>Add to the plot the solution of the 3 methods.</p></li>
 <li><p>Solve the following problem using someone of the non-linear techniques.</p></li>
 </ol>
-<p>Two firms compete in a simple Cournot duopoly with the inverse demand and the cost functions
-\begin{align}
-P(q) &amp;= q^{-1/\eta} \nonumber \
-C_k(q_k) &amp;= \frac{c_k}{2} q_k^2 \quad \text{for firm } k = 1, 2 \nonumber\
-q &amp;= q_1 + q_2.
-\end{align}</p>
+<p>Two firms compete in a simple Cournot duopoly with the inverse demand and the cost functions</p>
+<div class="math notranslate nohighlight">
+\[P(q) = q^{-1/\eta} \]</div>
+<div class="math notranslate nohighlight">
+\[C_k(q_k) = \frac{c_k}{2} q_k^2 \quad \text{for firm } k = 1, 2 \]</div>
+<div class="math notranslate nohighlight">
+\[q = q_1 + q_2\]</div>
 <p>Given the profit functions of the two firms</p>
 <div class="math notranslate nohighlight">
 \[\pi_k(q_1, q_2) = P(q_1 + q_2)q_k - C_k(q_k)\]</div>
