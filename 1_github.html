@@ -355,7 +355,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -371,6 +373,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-credentials-in-vs-code">GIT Credentials in VS Code</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -407,6 +417,21 @@ document.write(`
 </div>
 <p>Then from VSCode, you will press <code class="docutils literal notranslate"><span class="pre">Ctrl+Alt+P</span></code>; this will open the command palette, where you should select <code class="docutils literal notranslate"><span class="pre">Git:</span> <span class="pre">Clone</span> <span class="pre">-&gt;</span> <span class="pre">Clone</span> <span class="pre">from</span> <span class="pre">GitHub</span> <span class="pre">-&gt;</span> <span class="pre">MCE</span> <span class="pre">39659</span></code>. Then, choose the local folder where you will work on your assignments.</p>
 <p><a class="reference external" href="https://code.visualstudio.com/docs/sourcecontrol/github">https://code.visualstudio.com/docs/sourcecontrol/github</a></p>
+<section id="git-credentials-in-vs-code">
+<h2>GIT Credentials in VS Code<a class="headerlink" href="#git-credentials-in-vs-code" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Download <code class="docutils literal notranslate"><span class="pre">git</span></code> from the official <a class="reference external" href="https://git-scm.com">website</a> and install it.</p></li>
+<li><p>When you’re finished installing Git, start VSCode and verify that Git is now identified.</p></li>
+<li><p>Start a new Terminal and configure your ‘<a class="reference external" href="http://user.name">user.name</a>’ and ‘user.email’ in git with the help of the following commands.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">–global</span> <span class="pre">user.email</span> <span class="pre">“you&#64;example.com”</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">–global</span> <span class="pre">user.name</span> <span class="pre">“Your</span> <span class="pre">Name”</span></code></p></li>
+</ul>
+</li>
+<li><p>Check: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">–global</span> <span class="pre">–list</span></code></p></li>
+</ol>
+<p>For more details: <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup?ref=itsfoss.com">https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup?ref=itsfoss.com</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -464,7 +489,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-credentials-in-vs-code">GIT Credentials in VS Code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
