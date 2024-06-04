@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Consumption-Saving model &#8212; Computational Economics with Julia</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=bd9e20870c6007c4c509" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509" />
+  <script src="_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=bd9e20870c6007c4c509"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '7_solutionmethod';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Review of the Solow model" href="6_solow_old.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <header>
+  
+    <div class="bd-header navbar navbar-expand-lg bd-navbar">
+    </div>
+  
+  </header>
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.svg" class="logo__image only-light" alt="Computational Economics with Julia - Home"/>
+    <script>document.write(`<img src="_static/logo.svg" class="logo__image only-dark" alt="Computational Economics with Julia - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Computational Economics whith Julia
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0_software_installation.html">Software installation: Julia and Visual Studio Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1_github.html">Github and VSCode</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_first_codes.html">First codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_solow.html">The Solow-Swan Growth Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_fundamental_types.html">Arrays, Tuples, Ranges, and Other Fundamental Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_functions_conditionals.html">Functions, conditionals, loops, and intro to numerica methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_solow_old.html">Review of the Solow model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Consumption-Saving model</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F7_solutionmethod.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/7_solutionmethod.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Consumption-Saving model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Consumption-Saving model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-a-t-3-model">Solve a T=3 model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unconstraint-minimization">Unconstraint minimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-minimization">Constraint minimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-system-using-foc">Equation system using FOC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equation system using FOC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="consumption-saving-model">
+<h1>Consumption-Saving model<a class="headerlink" href="#consumption-saving-model" title="Permalink to this heading">#</a></h1>
+<p>The consumption-saving model, which is initially quite simple, allows for the analysis of complex macroeconomic problems such as changes in fiscal policy, pension systems, migration processes, demographic changes, among others. Some applications:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.journals.uchicago.edu/doi/10.1086/262120">Sustaining Fiscal Policy through Immigration</a> (Storesletten, 2000).</p></li>
+<li><p><a class="reference external" href="https://web.archive.org/web/20060908113117id_/http://homepages.nyu.edu/~sk910/research/DemogSouth.pdf">Quantifying the Effects of the Demographic Transition in Developing Economies</a> (Attanasio, Kita &amp; Violante, 2006).</p></li>
+<li><p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0304393206002431">Global demographic trends and social security reform</a> (Attanasio, Kitao &amp; Violante, 2006)</p></li>
+<li><p><a class="reference external" href="https://www.aeaweb.org/articles?id=10.1257/aer.99.1.25">Taxing Capital? Not a Bad Idea After All!</a> (Conesa, Kitao &amp; Krueger, 2009).</p></li>
+</ul>
+<p>In this section of the course, we are going to solve the basic <span class="math notranslate nohighlight">\(T\)</span> periods model using different techniques:</p>
+<ul class="simple">
+<li><p>Unconstraint minimization</p></li>
+<li><p>Constraint minimization</p></li>
+<li><p>Euler equation system</p></li>
+<li><p>Shooting</p></li>
+<li><p>Value Funtion Iteration</p></li>
+</ul>
+<p>Then, you are going to test which is better.  Later, we will code tax and pension applications.</p>
+<p>In the consumption-saving model, there is a representative agent who lives for <span class="math notranslate nohighlight">\(T\)</span> periods. The agent must choose the optimal consumption <span class="math notranslate nohighlight">\(\{c_t\}_{t=0}^T \)</span>. The preferences are represented by utility <span class="math notranslate nohighlight">\(u(c_t)\)</span> where:</p>
+<div class="math notranslate nohighlight">
+\[U(\{c_t\}_{t=0}^T)=\sum_{t=0}^{T}\beta^t u(c_t)\]</div>
+<p>The stationary discounting factor <span class="math notranslate nohighlight">\(0&lt;\beta&lt;1\)</span>. The utility function <span class="math notranslate nohighlight">\(u(c)\)</span> satisfies the following properties:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(u(c)\)</span> is strictly increasing</p></li>
+<li><p><span class="math notranslate nohighlight">\(u(c)\)</span> is strictly concave</p></li>
+<li><p><span class="math notranslate nohighlight">\(\lim_{c\rightarrow 0} u^{'}(c)=\infty\)</span></p></li>
+</ol>
+<p>The initial amount of assets is given by <span class="math notranslate nohighlight">\(a_0\)</span> and the terminal condition <span class="math notranslate nohighlight">\(a_{T+1}\ge 0\)</span>. The net interest rate earned on savings is <span class="math notranslate nohighlight">\(r_t\)</span>. The budget constraint is</p>
+<div class="math notranslate nohighlight">
+\[c_t = y_t + (1+r_t)a_t - a_{t+1}\]</div>
+<p>The dynamic optimization problem of the agent can be written as</p>
+<p>\begin{align}
+\max_{{c_t, a_{t+1}}<em>{t=0}^{T} } &amp;\sum</em>{t=0}^T \beta^t u(c_t) \
+&amp;\text{s.t.}  \
+a_0 &amp;= \overline{a} \
+c_t &amp;= y_t + (1+r_t)a_t - a_{t+1}   \
+c_t &amp;\ge 0  \
+a_{t+1} &amp;\ge \underline{a}  \
+a_{T+1} &amp;= 0   \
+\end{align}</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="solve-a-t-3-model">
+<h1>Solve a T=3 model<a class="headerlink" href="#solve-a-t-3-model" title="Permalink to this heading">#</a></h1>
+<p>\begin{align}
+max_{c_1,c_2,c_3}&amp; u(c_1)+\beta u(c_2) + \beta^2(c_3) \
+&amp;\text{s.t.}  \
+a_1 &amp;= \overline{a} \
+a_2 &amp;= R<em>a_1 + y_1 - c_1 \
+a_3 &amp;= R</em>a_2 + y_2 - c_2 \
+a_4 &amp;= 0 \
+\end{align}</p>
+<section id="unconstraint-minimization">
+<h2>Unconstraint minimization<a class="headerlink" href="#unconstraint-minimization" title="Permalink to this heading">#</a></h2>
+<p>from constraint
+\begin{align}
+c_1 &amp;= R*\overline{a} + y_1 - a_2  \
+c_2 &amp;= R<em>a_2 + y_2 - a_3 \
+c_3 &amp; = R</em>a_3 + y_3 \
+\end{align}</p>
+<p>Then, the unconstraint problem
+\begin{align}
+max_{a_2,a_3}&amp; u(R*\overline{a} + y_1 - a_2)+\beta u(R<em>a_2 + y_2 - a_3) + \beta^2(R</em>a_3 + y_3) \
+\end{align}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># import Pkg; Pkg.add(&quot;Optim&quot;)</span>
+<span class="k">using</span><span class="w"> </span><span class="n">Optim</span><span class="p">,</span><span class="w"> </span><span class="n">Parameters</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">params</span><span class="p">(;</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.04</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ā</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">ā</span><span class="o">=</span><span class="n">ā</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="o">=</span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">y3</span><span class="o">=</span><span class="n">y3</span><span class="p">)</span>
+<span class="k">end</span><span class="w"> </span>
+
+<span class="c"># Función de utilidad, asumiendo utilidad CRRA</span>
+<span class="k">function</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Función objetivo</span>
+<span class="k">function</span><span class="w"> </span><span class="n">objective</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@unpack</span><span class="w"> </span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">ā</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span>
+<span class="w">    </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+<span class="w">    </span><span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ā</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a2</span>
+<span class="w">    </span><span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a3</span>
+<span class="w">    </span><span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y3</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="p">(</span><span class="n">u</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">β</span><span class="o">^</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c3</span><span class="p">))</span><span class="w">  </span><span class="c"># Negativo porque Optim minimiza por defecto</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>objective (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Estableciendo un punto inicial para la optimización</span>
+<span class="n">initial_guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">150.</span><span class="p">,</span><span class="w"> </span><span class="mf">150.</span><span class="p">]</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">()</span>
+
+<span class="c"># Optimizando</span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">optimize</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">objective</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">initial_guess</span><span class="p">,</span><span class="w"> </span><span class="n">BFGS</span><span class="p">())</span>
+
+<span class="c"># Resultados</span>
+<span class="n">optimal_a2</span><span class="p">,</span><span class="w"> </span><span class="n">optimal_a3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Optim</span><span class="o">.</span><span class="n">minimizer</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="n">optimal_c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ā</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">optimal_a2</span>
+<span class="n">optimal_c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">optimal_a2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">optimal_a3</span>
+<span class="n">optimal_c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">optimal_a3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y3</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Optimal a2: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">optimal_a2</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Optimal a3: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">optimal_a3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Optimal c1: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">optimal_c1</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Optimal c2: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">optimal_c2</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Optimal c3: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">optimal_c3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">UndefVarError</span>: `R` not defined
+
+<span class="ne">Stacktrace</span>:
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span>
+   <span class="o">@</span> <span class="n">In</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span><span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="constraint-minimization">
+<h2>Constraint minimization<a class="headerlink" href="#constraint-minimization" title="Permalink to this heading">#</a></h2>
+<p>\begin{align}
+max_{c_1,c_2,c_3, a_2, a_3}&amp; u(c_1)+\beta u(c_2) + \beta^2(c_3) \
+&amp;\text{s.t.}  \
+0 &amp;= R*\overline{a} + y_1 - c_1 - a_2 \
+0 &amp;= R*a_2 + y_2 - c_2 - a_3 \
+a_4 &amp;= 0 \
+\end{align}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">JuMP</span><span class="p">,</span><span class="w"> </span><span class="n">Ipopt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Parámetros</span>
+<span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.96</span><span class="w">  </span><span class="c"># Factor de descuento</span>
+<span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.04</span><span class="w">  </span><span class="c"># Tasa de retorno de los activos</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">]</span><span class="w">  </span><span class="c"># Ingresos en cada periodo, asumiendo 0 para simplificar</span>
+<span class="n">ā</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="w">  </span><span class="c"># Activo inicial</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Modelo de optimización</span>
+<span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">(</span><span class="n">Ipopt</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
+
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="c"># Consumo no negativo en cada periodo</span>
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">4</span><span class="p">])</span><span class="w">  </span><span class="c"># Activos en cada periodo</span>
+
+<span class="c"># Función objetivo</span>
+<span class="nd">@NLobjective</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">Max</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">β</span><span class="o">*</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">β</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span><span class="w"> </span>
+
+<span class="c"># Restricciones</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ā</span><span class="p">)</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="c"># Valor terminal de activos</span>
+
+<span class="c"># Resolver el modelo</span>
+<span class="n">optimize!</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c"># Imprimir la solución</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Solución óptima:&quot;</span><span class="p">)</span>
+<span class="k">for</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;c[</span><span class="si">$t</span><span class="s">] = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]))</span>
+<span class="k">end</span>
+
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Valor de la función objetivo: &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">objective_value</span><span class="p">(</span><span class="n">model</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Function u automatically registered with 1 arguments.
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Calling the function with a different number of arguments will result in an
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>error.
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>While you can safely ignore this warning, we recommend that you manually
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>register the function as follows:
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>```Julia
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>model = Model()
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>register(model, :u, 1, u; autodiff = true)
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>```
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ MathOptInterface.Nonlinear C:\Users\felix\.julia\packages\MathOptInterface\2rAFb\src\Nonlinear\operators.jl:430
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>******************************************************************************
+This program contains Ipopt, a library for large-scale nonlinear optimization.
+ Ipopt is released as open source code under the Eclipse Public License (EPL).
+         For more information visit https://github.com/coin-or/Ipopt
+******************************************************************************
+
+This is Ipopt version 3.14.14, running with linear solver MUMPS 5.6.2.
+
+Number of nonzeros in equality constraint Jacobian...:       11
+Number of nonzeros in inequality constraint Jacobian.:        0
+Number of nonzeros in Lagrangian Hessian.............:        3
+
+Total number of variables............................:        7
+                     variables with only lower bounds:        3
+                variables with lower and upper bounds:        0
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:        5
+Total number of inequality constraints...............:        0
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:        0
+
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0 -2.8816029e+02 1.50e+02 2.04e-02  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -1.8723695e-02 2.84e-14 1.60e+04  -1.0 1.60e+02    -  6.19e-05 1.00e+00f  1
+   2 -1.8722508e-02 1.42e-14 2.56e-04  -1.0 2.42e-01    -  9.97e-01 1.00e+00f  1
+   3 -1.8720830e-02 1.42e-14 2.83e-08  -2.5 2.92e-01    -  1.00e+00 1.00e+00f  1
+   4 -1.8717478e-02 1.42e-14 1.50e-09  -3.8 6.41e-01    -  1.00e+00 1.00e+00h  1
+   5 -1.8716806e-02 2.84e-14 1.84e-11  -5.7 1.39e-01    -  1.00e+00 1.00e+00h  1
+   6 -1.8716732e-02 2.84e-14 2.51e-14  -8.6 1.55e-02    -  1.00e+00 1.00e+00h  1
+   7 -1.8715671e-02 0.00e+00 2.51e-14 -12.9 2.29e-01    -  9.99e-01 1.00e+00h  1
+   8 -1.8705340e-02 2.84e-14 1.04e-15 -12.9 4.41e+00    -  1.00e+00 1.00e+00f  1
+
+Number of Iterations....: 8
+
+                                   (scaled)                 (unscaled)
+Objective...............:   1.8705339649251498e-10   -1.8705339649251498e-02
+Dual infeasibility......:   1.0430737292938402e-15    1.0430737292938403e-07
+Constraint violation....:   2.8421709430404007e-14    2.8421709430404007e-14
+Variable bound violation:   0.0000000000000000e+00    0.0000000000000000e+00
+Complementarity.........:   3.2052476893332745e-13    3.2052476893332743e-05
+Overall NLP error.......:   3.2052476893332745e-13    3.2052476893332743e-05
+
+
+Number of objective function evaluations             = 9
+Number of objective gradient evaluations             = 9
+Number of equality constraint evaluations            = 9
+Number of inequality constraint evaluations          = 0
+Number of equality constraint Jacobian evaluations   = 1
+Number of inequality constraint Jacobian evaluations = 0
+Number of Lagrangian Hessian evaluations             = 8
+Total seconds in IPOPT                               = 0.240
+
+EXIT: Optimal Solution Found.
+Solución óptima:
+c[1] = 154.27976827243637
+c[2] = 154.08584266003513
+c[3] = 153.77132627009632
+Valor de la función objetivo: -0.018705339649251498
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># Parámetros</span>
+<span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.96</span><span class="w">  </span><span class="c"># Factor de descuento</span>
+<span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.04</span><span class="w">  </span><span class="c"># Tasa de retorno de los activos</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">]</span><span class="w">  </span><span class="c"># Ingresos en cada periodo, asumiendo 0 para simplificar</span>
+<span class="n">ā</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="w">  </span><span class="c"># Activo inicial</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Modelo de optimización</span>
+<span class="n">model</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Model</span><span class="p">(</span><span class="n">Ipopt</span><span class="o">.</span><span class="n">Optimizer</span><span class="p">)</span>
+
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="c"># Consumo no negativo en cada periodo</span>
+<span class="nd">@variable</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="o">:</span><span class="mi">3</span><span class="p">])</span><span class="w">  </span><span class="c"># Activos en cada periodo</span>
+
+<span class="c"># Función objetivo</span>
+<span class="nd">@NLobjective</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">Max</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">β</span><span class="o">*</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">β</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span><span class="w"> </span>
+
+<span class="c"># Restricciones</span>
+<span class="c"># @constraint(model, a[1] == ā)</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ā</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="nd">@constraint</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+<span class="c"># @constraint(model, a[4] == 0)  # Valor terminal de activos</span>
+
+<span class="c"># Resolver el modelo</span>
+<span class="n">optimize!</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c"># Imprimir la solución</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;Solución óptima:&quot;</span><span class="p">)</span>
+<span class="k">for</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;c[</span><span class="si">$t</span><span class="s">] = &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">value</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">t</span><span class="p">]))</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold -Color-Bold-Yellow">┌ Warning: </span>Function u automatically registered with 1 arguments.
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>Calling the function with a different number of arguments will result in an
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>error.
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>While you can safely ignore this warning, we recommend that you manually
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>register the function as follows:
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>```Julia
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>model = Model()
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>register(model, :u, 1, u; autodiff = true)
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">│ </span>```
+<span class=" -Color -Color-Bold -Color-Bold-Yellow">└ </span>@ MathOptInterface.Nonlinear C:\Users\felix\.julia\packages\MathOptInterface\2rAFb\src\Nonlinear\operators.jl:430
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>This is Ipopt version 3.14.14, running with linear solver MUMPS 5.6.2.
+
+Number of nonzeros in equality constraint Jacobian...:        7
+Number of nonzeros in inequality constraint Jacobian.:        0
+Number of nonzeros in Lagrangian Hessian.............:        3
+
+Total number of variables............................:        5
+                     variables with only lower bounds:        3
+                variables with lower and upper bounds:        0
+                     variables with only upper bounds:        0
+Total number of equality constraints.................:        3
+Total number of inequality constraints...............:        0
+        inequality constraints with only lower bounds:        0
+   inequality constraints with lower and upper bounds:        0
+        inequality constraints with only upper bounds:        0
+
+iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
+   0 -2.8816029e+02 2.56e+02 2.04e-02  -1.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -1.8723695e-02 2.84e-14 1.60e+04  -1.0 1.60e+02    -  6.19e-05 1.00e+00f  1
+   2 -1.8722508e-02 0.00e+00 2.56e-04  -1.0 2.42e-01    -  9.97e-01 1.00e+00f  1
+   3 -1.8720830e-02 0.00e+00 2.83e-08  -2.5 2.92e-01    -  1.00e+00 1.00e+00f  1
+   4 -1.8717478e-02 0.00e+00 1.50e-09  -3.8 6.41e-01    -  1.00e+00 1.00e+00f  1
+   5 -1.8716806e-02 2.84e-14 1.84e-11  -5.7 1.39e-01    -  1.00e+00 1.00e+00f  1
+   6 -1.8716732e-02 0.00e+00 2.51e-14  -8.6 1.55e-02    -  1.00e+00 1.00e+00h  1
+   7 -1.8715671e-02 1.42e-14 2.51e-14 -12.9 2.29e-01    -  9.99e-01 1.00e+00f  1
+   8 -1.8705340e-02 1.42e-14 1.04e-15 -12.9 4.41e+00    -  1.00e+00 1.00e+00h  1
+
+Number of Iterations....: 8
+
+                                   (scaled)                 (unscaled)
+Objective...............:   1.8705339649251511e-10   -1.8705339649251512e-02
+Dual infeasibility......:   1.0430737298888593e-15    1.0430737298888593e-07
+Constraint violation....:   1.4210854715202004e-14    1.4210854715202004e-14
+Variable bound violation:   0.0000000000000000e+00    0.0000000000000000e+00
+Complementarity.........:   3.2052476899665740e-13    3.2052476899665738e-05
+Overall NLP error.......:   3.2052476899665740e-13    3.2052476899665738e-05
+
+
+Number of objective function evaluations             = 9
+Number of objective gradient evaluations             = 9
+Number of equality constraint evaluations            = 9
+Number of inequality constraint evaluations          = 0
+Number of equality constraint Jacobian evaluations   = 1
+Number of inequality constraint Jacobian evaluations = 0
+Number of Lagrangian Hessian evaluations             = 8
+Total seconds in IPOPT                               = 0.039
+
+EXIT: Optimal Solution Found.
+Solución óptima:
+c[1] = 154.27976827249418
+c[2] = 154.08584266007117
+c[3] = 153.77132626999628
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="equation-system-using-foc">
+<h2>Equation system using FOC<a class="headerlink" href="#equation-system-using-foc" title="Permalink to this heading">#</a></h2>
+<p>\begin{align}
+a_2 &amp;= R*\overline{a} + y_1 - c_1 \
+a_3 &amp;= R<em>a_2 + y_2 - c_2 \
+a_4 &amp;= R</em>a_3 + y_3 - c_3 \
+u_{c_1}&amp;=\beta R u_{c_2} \
+u_{c_2}&amp;=\beta R u_{c_3} \
+a_4 &amp;= 0 \
+\end{align}</p>
+<p>Solving by consumption <span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(c_2\)</span> and <span class="math notranslate nohighlight">\(c_3\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">params</span><span class="p">(;</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.04</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ā</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">ā</span><span class="o">=</span><span class="n">ā</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="o">=</span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">y3</span><span class="o">=</span><span class="n">y3</span><span class="p">)</span>
+<span class="k">end</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">NLsolve</span>
+<span class="c"># Función de utilidad, asumiendo utilidad CRRA</span>
+<span class="k">function</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="nb">Inf</span><span class="w">  </span><span class="c"># Devuelve -Inf para consumos no válidos</span>
+<span class="k">end</span>
+
+<span class="c"># Derivada de la función de utilidad</span>
+<span class="k">function</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">γ</span><span class="p">)</span>
+<span class="k">end</span>
+
+
+<span class="c"># Sistema de ecuaciones de Euler</span>
+<span class="k">function</span><span class="w"> </span><span class="n">euler</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@unpack</span><span class="w"> </span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">ā</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span>
+<span class="w">    </span><span class="n">c1</span><span class="p">,</span><span class="w"> </span><span class="n">c2</span><span class="p">,</span><span class="w"> </span><span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span>
+<span class="w">    </span><span class="n">eq1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+<span class="w">    </span><span class="n">eq2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">c3</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">a2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ā</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c1</span>
+<span class="w">    </span><span class="n">a3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c2</span>
+<span class="w">    </span><span class="n">a4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c3</span><span class="w">  </span><span class="c"># Esto debe ser cero según el problema</span>
+<span class="w">    </span><span class="n">eq3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a4</span><span class="w">  </span><span class="c"># Condición terminal de que a4 debe ser 0</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="n">eq1</span><span class="p">,</span><span class="w"> </span><span class="n">eq2</span><span class="p">,</span><span class="w"> </span><span class="n">eq3</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">initial_guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">150.0</span><span class="p">,</span><span class="w"> </span><span class="mf">150.0</span><span class="p">,</span><span class="w"> </span><span class="mf">150.0</span><span class="p">]</span><span class="w"> </span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsolve</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="w"> </span><span class="n">euler</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">initial_guess</span><span class="p">,</span><span class="w"> </span><span class="n">autodiff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:forward</span><span class="p">)</span><span class="w">  </span><span class="c"># Uso de diferenciación automática</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Results of Nonlinear Solver Algorithm
+ * Algorithm: Trust-region with dogleg and autoscaling
+ * Starting Point: [150.0, 150.0, 150.0]
+ * Zero: [154.16289267711318, 154.04937167178804, 153.93566874177486]
+ * Inf-norm of residuals: 0.000000
+ * Iterations: 1
+ * Convergence: true
+   * |x - x&#39;| &lt; 0.0e+00: false
+   * |f(x)| &lt; 1.0e-08: true
+ * Function Calls (f): 2
+ * Jacobian Calls (df/dx): 2
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id1">
+<h2>Equation system using FOC<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<p>Other mehcanis is to use the Euler equation and solve by <span class="math notranslate nohighlight">\(a_2\)</span> and <span class="math notranslate nohighlight">\(a_3\)</span>.</p>
+<p>\begin{align}
+c_t = Ra_t + y_t - a_{t+1} \
+c_{t+1} = Ra_{t+1} + y_{t+1} - a_{t+2}
+\end{align}</p>
+<p>Using the Euler equations:</p>
+<p>\begin{align}
+u_{c_{t}}&amp;=\beta R u_{c_{t+1}} \
+\end{align}</p>
+<p>Using <span class="math notranslate nohighlight">\(c_t\)</span> and <span class="math notranslate nohighlight">\(c_{t+1}\)</span> in the Euler equations:
+\begin{align}
+u^{‘}(Ra_t + y_t - a_{t+1})&amp;=\beta R u^{‘}(Ra_{t+1} + y_{t+1} - a_{t+2}) \
+\end{align}</p>
+<p>Then, the problem is a second order difference equation <span class="math notranslate nohighlight">\(\phi(a_t, a_{t+1}, a_{t+2})=0\)</span>.
+In a T=3 problem:</p>
+<p>\begin{align}
+\phi(a_1=\overline{a}, a_{2}, a_{3})=0 \
+\phi(a_2, a_{3}, a_{4}=0)=0 \
+\end{align}</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">params</span><span class="p">(;</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span>
+<span class="w">    </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.04</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ā</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">150</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="o">=</span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">ā</span><span class="o">=</span><span class="n">ā</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="o">=</span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="o">=</span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">y3</span><span class="o">=</span><span class="n">y3</span><span class="p">)</span>
+<span class="k">end</span><span class="w"> </span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>params (generic function with 1 method)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">NLsolve</span><span class="p">,</span><span class="w"> </span><span class="n">Parameters</span>
+<span class="c"># Función de utilidad, asumiendo utilidad CRRA</span>
+<span class="k">function</span><span class="w"> </span><span class="n">u</span><span class="p">(</span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">γ</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="nb">Inf</span><span class="w">  </span><span class="c"># Devuelve -Inf para consumos no válidos</span>
+<span class="k">end</span>
+
+<span class="c"># Derivada de la función de utilidad</span>
+<span class="k">function</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">γ</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="c"># Sistema de ecuaciones de Euler</span>
+<span class="k">function</span><span class="w"> </span><span class="n">euler</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">    </span><span class="nd">@unpack</span><span class="w"> </span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="p">,</span><span class="w"> </span><span class="n">ā</span><span class="p">,</span><span class="w"> </span><span class="n">y1</span><span class="p">,</span><span class="w"> </span><span class="n">y2</span><span class="p">,</span><span class="w"> </span><span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span>
+<span class="w">    </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span>
+<span class="w">    </span><span class="n">eq1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">ā</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y1</span><span class="o">-</span><span class="w"> </span><span class="n">a2</span><span class="p">)</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">a2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y2</span><span class="o">-</span><span class="w"> </span><span class="n">a3</span><span class="p">)</span><span class="w"> </span><span class="c">#phi(a1,a2,a3)</span>
+<span class="w">    </span><span class="n">eq2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">a2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y2</span><span class="o">-</span><span class="w"> </span><span class="n">a3</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">R</span><span class="o">*</span><span class="n">a3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y3</span><span class="p">)</span><span class="w"> </span><span class="c">#phi(a2,a3,a4)</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">[</span><span class="n">eq1</span><span class="p">,</span><span class="w"> </span><span class="n">eq2</span><span class="p">]</span>
+<span class="k">end</span>
+
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">()</span>
+<span class="n">initial_guess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">150.0</span><span class="p">,</span><span class="w"> </span><span class="mf">150.0</span><span class="p">]</span><span class="w"> </span>
+<span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nlsolve</span><span class="p">(</span><span class="n">x</span><span class="o">-&gt;</span><span class="w"> </span><span class="n">euler</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">initial_guess</span><span class="p">,</span><span class="w"> </span><span class="n">autodiff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">:forward</span><span class="p">)</span><span class="w">  </span><span class="c"># Uso de diferenciación automática</span>
+<span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">a3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">result</span><span class="o">.</span><span class="n">zero</span>
+<span class="n">c1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">R</span><span class="o">*</span><span class="n">p</span><span class="o">.</span><span class="n">ā</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">y1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a2</span><span class="w"> </span>
+<span class="n">c2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">R</span><span class="o">*</span><span class="n">a2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">y2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">a3</span>
+<span class="n">c3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">R</span><span class="o">*</span><span class="n">a3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">p</span><span class="o">.</span><span class="n">y3</span><span class="w"> </span>
+
+<span class="n">print</span><span class="p">(</span><span class="s">&quot;c1, c2, c3: &quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">c1</span><span class="p">,</span><span class="n">c2</span><span class="p">,</span><span class="n">c3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c1, c2, c3: (154.1784105404475, 154.0547359427045, 153.91330577903932)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="homework">
+<h2>Homework<a class="headerlink" href="#homework" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Program the solution of unconstraint minimization for <span class="math notranslate nohighlight">\(T=80\)</span>.</p></li>
+<li><p>Program the solution of constraint minimization for <span class="math notranslate nohighlight">\(T=80\)</span>.</p></li>
+<li><p>Program the solution of Euler equation system solving by <span class="math notranslate nohighlight">\(c_t\)</span> for <span class="math notranslate nohighlight">\(T=80\)</span>.</p></li>
+<li><p>Program the solution of Euler equation system solving by <span class="math notranslate nohighlight">\(a_t\)</span> for <span class="math notranslate nohighlight">\(T=80\)</span>.</p></li>
+<li><p>Plot the solution of <span class="math notranslate nohighlight">\(c_t\)</span> and <span class="math notranslate nohighlight">\(a_t\)</span> in a subplot.</p></li>
+<li><p>Plot the the solution time by T and by method (all in the same plot).</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "julia-1.10-1.10"
+        },
+        kernelOptions: {
+            name: "julia-1.10-1.10",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'julia-1.10-1.10'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="6_solow_old.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Review of the Solow model</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Consumption-Saving model</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#solve-a-t-3-model">Solve a T=3 model</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unconstraint-minimization">Unconstraint minimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-minimization">Constraint minimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-system-using-foc">Equation system using FOC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equation system using FOC</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The Jupyter Book Community
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=bd9e20870c6007c4c509"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=bd9e20870c6007c4c509"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
