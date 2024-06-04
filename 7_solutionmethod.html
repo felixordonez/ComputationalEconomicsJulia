@@ -434,38 +434,43 @@ document.write(`
 <div class="math notranslate nohighlight">
 \[c_t = y_t + (1+r_t)a_t - a_{t+1}\]</div>
 <p>The dynamic optimization problem of the agent can be written as</p>
-<p>\begin{align}
-\max_{{c_t, a_{t+1}}<em>{t=0}^{T} } &amp;\sum</em>{t=0}^T \beta^t u(c_t) \
-&amp;\text{s.t.}  \
-a_0 &amp;= \overline{a} \
-c_t &amp;= y_t + (1+r_t)a_t - a_{t+1}   \
-c_t &amp;\ge 0  \
-a_{t+1} &amp;\ge \underline{a}  \
-a_{T+1} &amp;= 0   \
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[ \max_{\{c_t, a_{t+1}\}_{t=0}^{T} } \sum_{t=0}^T \beta^t u(c_t) \]</div>
+<div class="math notranslate nohighlight">
+\[\text{s.t.}  \]</div>
+<div class="math notranslate nohighlight">
+\[a_0 = \overline{a} \]</div>
+<div class="math notranslate nohighlight">
+\[c_t = y_t + (1+r_t)a_t - a_{t+1}   \]</div>
+<div class="math notranslate nohighlight">
+\[c_t \ge 0  \]</div>
+<div class="math notranslate nohighlight">
+\[a_{t+1} \ge \underline{a}  \]</div>
+<div class="math notranslate nohighlight">
+\[a_{T+1} = 0   \]</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="solve-a-t-3-model">
 <h1>Solve a T=3 model<a class="headerlink" href="#solve-a-t-3-model" title="Permalink to this heading">#</a></h1>
-<p>\begin{align}
-max_{c_1,c_2,c_3}&amp; u(c_1)+\beta u(c_2) + \beta^2(c_3) \
-&amp;\text{s.t.}  \
-a_1 &amp;= \overline{a} \
-a_2 &amp;= R<em>a_1 + y_1 - c_1 \
-a_3 &amp;= R</em>a_2 + y_2 - c_2 \
-a_4 &amp;= 0 \
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[max_{c_1,c_2,c_3} u(c_1)+\beta u(c_2) + \beta^2(c_3) \]</div>
+<div class="math notranslate nohighlight">
+\[\text{s.t.}  \]</div>
+<div class="math notranslate nohighlight">
+\[a_1 = \overline{a} \]</div>
+<div class="math notranslate nohighlight">
+\[a_2 = R*a_1 + y_1 - c_1 \]</div>
+<div class="math notranslate nohighlight">
+\[a_3 = R*a_2 + y_2 - c_2 \]</div>
+<div class="math notranslate nohighlight">
+\[a_4 = 0 \]</div>
 <section id="unconstraint-minimization">
 <h2>Unconstraint minimization<a class="headerlink" href="#unconstraint-minimization" title="Permalink to this heading">#</a></h2>
 <p>from constraint
-\begin{align}
-c_1 &amp;= R*\overline{a} + y_1 - a_2  \
-c_2 &amp;= R<em>a_2 + y_2 - a_3 \
-c_3 &amp; = R</em>a_3 + y_3 \
-\end{align}</p>
+$<span class="math notranslate nohighlight">\( c_1 = R*\overline{a} + y_1 - a_2  \)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(c_2 = R*a_2 + y_2 - a_3 \)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(c_3 = R*a_3 + y_3 \)</span>$</p>
 <p>Then, the unconstraint problem
-\begin{align}
-max_{a_2,a_3}&amp; u(R*\overline{a} + y_1 - a_2)+\beta u(R<em>a_2 + y_2 - a_3) + \beta^2(R</em>a_3 + y_3) \
-\end{align}</p>
+$<span class="math notranslate nohighlight">\(max_{a_2,a_3} u(R*\overline{a} + y_1 - a_2)+\beta u(R*a_2 + y_2 - a_3) + \beta^2(R*a_3 + y_3) \)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># import Pkg; Pkg.add(&quot;Optim&quot;)</span>
@@ -545,13 +550,16 @@ max_{a_2,a_3}&amp; u(R*\overline{a} + y_1 - a_2)+\beta u(R<em>a_2 + y_2 - a_3) +
 </section>
 <section id="constraint-minimization">
 <h2>Constraint minimization<a class="headerlink" href="#constraint-minimization" title="Permalink to this heading">#</a></h2>
-<p>\begin{align}
-max_{c_1,c_2,c_3, a_2, a_3}&amp; u(c_1)+\beta u(c_2) + \beta^2(c_3) \
-&amp;\text{s.t.}  \
-0 &amp;= R*\overline{a} + y_1 - c_1 - a_2 \
-0 &amp;= R*a_2 + y_2 - c_2 - a_3 \
-a_4 &amp;= 0 \
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[ max_{c_1,c_2,c_3, a_2, a_3} u(c_1)+\beta u(c_2) + \beta^2(c_3) \]</div>
+<div class="math notranslate nohighlight">
+\[\text{s.t.}  \]</div>
+<div class="math notranslate nohighlight">
+\[0 = R*\overline{a} + y_1 - c_1 - a_2 \]</div>
+<div class="math notranslate nohighlight">
+\[0 = R*a_2 + y_2 - c_2 - a_3 \]</div>
+<div class="math notranslate nohighlight">
+\[a_4 = 0 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">JuMP</span><span class="p">,</span><span class="w"> </span><span class="n">Ipopt</span>
@@ -791,14 +799,18 @@ c[3] = 153.77132626999628
 </section>
 <section id="equation-system-using-foc">
 <h2>Equation system using FOC<a class="headerlink" href="#equation-system-using-foc" title="Permalink to this heading">#</a></h2>
-<p>\begin{align}
-a_2 &amp;= R*\overline{a} + y_1 - c_1 \
-a_3 &amp;= R<em>a_2 + y_2 - c_2 \
-a_4 &amp;= R</em>a_3 + y_3 - c_3 \
-u_{c_1}&amp;=\beta R u_{c_2} \
-u_{c_2}&amp;=\beta R u_{c_3} \
-a_4 &amp;= 0 \
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[ a_2 = R*\overline{a} + y_1 - c_1 \]</div>
+<div class="math notranslate nohighlight">
+\[a_3  = R*a_2 + y_2 - c_2 \]</div>
+<div class="math notranslate nohighlight">
+\[a_4  = R*a_3 + y_3 - c_3 \]</div>
+<div class="math notranslate nohighlight">
+\[u_{c_1} =\beta R u_{c_2} \]</div>
+<div class="math notranslate nohighlight">
+\[u_{c_2} =\beta R u_{c_3} \]</div>
+<div class="math notranslate nohighlight">
+\[a_4 = 0 \]</div>
 <p>Solving by consumption <span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(c_2\)</span> and <span class="math notranslate nohighlight">\(c_3\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -869,24 +881,21 @@ a_4 &amp;= 0 \
 <section id="id1">
 <h2>Equation system using FOC<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>Other mehcanis is to use the Euler equation and solve by <span class="math notranslate nohighlight">\(a_2\)</span> and <span class="math notranslate nohighlight">\(a_3\)</span>.</p>
-<p>\begin{align}
-c_t = Ra_t + y_t - a_{t+1} \
-c_{t+1} = Ra_{t+1} + y_{t+1} - a_{t+2}
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[c_t = Ra_t + y_t - a_{t+1} \]</div>
+<div class="math notranslate nohighlight">
+\[c_{t+1} = Ra_{t+1} + y_{t+1} - a_{t+2}\]</div>
 <p>Using the Euler equations:</p>
-<p>\begin{align}
-u_{c_{t}}&amp;=\beta R u_{c_{t+1}} \
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[u_{c_{t}} =\beta R u_{c_{t+1}} \]</div>
 <p>Using <span class="math notranslate nohighlight">\(c_t\)</span> and <span class="math notranslate nohighlight">\(c_{t+1}\)</span> in the Euler equations:
-\begin{align}
-u^{‘}(Ra_t + y_t - a_{t+1})&amp;=\beta R u^{‘}(Ra_{t+1} + y_{t+1} - a_{t+2}) \
-\end{align}</p>
+$<span class="math notranslate nohighlight">\(u^{'}(Ra_t + y_t - a_{t+1}) =\beta R u^{'}(Ra_{t+1} + y_{t+1} - a_{t+2}) \)</span>$</p>
 <p>Then, the problem is a second order difference equation <span class="math notranslate nohighlight">\(\phi(a_t, a_{t+1}, a_{t+2})=0\)</span>.
 In a T=3 problem:</p>
-<p>\begin{align}
-\phi(a_1=\overline{a}, a_{2}, a_{3})=0 \
-\phi(a_2, a_{3}, a_{4}=0)=0 \
-\end{align}</p>
+<div class="math notranslate nohighlight">
+\[\phi(a_1=\overline{a}, a_{2}, a_{3})=0 \]</div>
+<div class="math notranslate nohighlight">
+\[\phi(a_2, a_{3}, a_{4}=0)=0 \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">function</span><span class="w"> </span><span class="n">params</span><span class="p">(;</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.96</span><span class="p">,</span>
