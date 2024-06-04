@@ -10,4 +10,6 @@ chapters:
 - file: 3_solow
 - file: 4_fundamental_types
 - file: 5_functions_conditionals
-- file: 6_solow
+- file: 6_solow_old
+#- file: 6_solow_homework
+- file: 7_solutionmethod
