@@ -465,12 +465,16 @@ document.write(`
 \[a_4 = 0 \]</div>
 <section id="unconstraint-minimization">
 <h2>Unconstraint minimization<a class="headerlink" href="#unconstraint-minimization" title="Permalink to this heading">#</a></h2>
-<p>from constraint
-$<span class="math notranslate nohighlight">\( c_1 = R*\overline{a} + y_1 - a_2  \)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(c_2 = R*a_2 + y_2 - a_3 \)</span><span class="math notranslate nohighlight">\(
-\)</span><span class="math notranslate nohighlight">\(c_3 = R*a_3 + y_3 \)</span>$</p>
-<p>Then, the unconstraint problem
-$<span class="math notranslate nohighlight">\(max_{a_2,a_3} u(R*\overline{a} + y_1 - a_2)+\beta u(R*a_2 + y_2 - a_3) + \beta^2(R*a_3 + y_3) \)</span>$</p>
+<p>from constraint</p>
+<div class="math notranslate nohighlight">
+\[ c_1 = R*\overline{a} + y_1 - a_2  \]</div>
+<div class="math notranslate nohighlight">
+\[c_2 = R*a_2 + y_2 - a_3 \]</div>
+<div class="math notranslate nohighlight">
+\[c_3 = R*a_3 + y_3 \]</div>
+<p>Then, the unconstraint problem</p>
+<div class="math notranslate nohighlight">
+\[max_{a_2,a_3} u(R*\overline{a} + y_1 - a_2)+\beta u(R*a_2 + y_2 - a_3) + \beta^2(R*a_3 + y_3) \]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="c"># import Pkg; Pkg.add(&quot;Optim&quot;)</span>
