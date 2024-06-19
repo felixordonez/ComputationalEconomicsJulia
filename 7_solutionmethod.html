@@ -67,7 +67,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = '7_solutionmethod';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Review of the Solow model" href="6_solow_old.html" />
+    <link rel="next" title="Homework" href="7_consumption_homework.html" />
+    <link rel="prev" title="Homework" href="6_solow_homework.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,9 +185,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="3_solow.html">The Solow-Swan Growth Model</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4_fundamental_types.html">Arrays, Tuples, Ranges, and Other Fundamental Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_functions_conditionals.html">Functions, conditionals, loops, and intro to numerica methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="6_solow_old.html">Review of the Solow model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_solow_new.html">Review of the Solow model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_solow_homework.html">Homework</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Consumption-Saving model</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="7_consumption_homework.html">Homework</a></li>
 </ul>
 
     </div>
@@ -388,7 +391,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-minimization">Constraint minimization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-system-using-foc">Equation system using FOC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equation system using FOC</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework</a></li>
 </ul>
 </li>
 </ul>
@@ -961,21 +963,6 @@ In a T=3 problem:</p>
 </div>
 </div>
 </section>
-<section id="homework">
-<h2>Homework<a class="headerlink" href="#homework" title="Permalink to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>Program the solution of unconstraint minimization for <span class="math notranslate nohighlight">\(T=80\)</span>. How many variables we need to solve the problem?</p></li>
-<li><p>Program the solution of constraint minimization for <span class="math notranslate nohighlight">\(T=80\)</span>. How many equations, variables and constraint we need?</p></li>
-<li><p>Program the solution of Euler equation system solving by <span class="math notranslate nohighlight">\(c_t\)</span> for <span class="math notranslate nohighlight">\(T=80\)</span>. How many equations and variables we need?</p></li>
-<li><p>Program the solution of Euler equation system solving by <span class="math notranslate nohighlight">\(a_t\)</span> for <span class="math notranslate nohighlight">\(T=80\)</span>. How many equations and variables we need?</p></li>
-<li><p>Program the solution using bisection method (we review using Solow) for <span class="math notranslate nohighlight">\(T=80\)</span>. Explain the implementation.</p></li>
-<li><p>Plot the solution of (1), (2), (3), (4 )and (5) for <span class="math notranslate nohighlight">\(c_t\)</span> and <span class="math notranslate nohighlight">\(a_t\)</span> in a subplot.</p></li>
-<li><p>Plot the time of solution by T and by method.</p></li>
-<li><p>Analize the role of <span class="math notranslate nohighlight">\(\gamma\)</span> in the utility function. How change utility, the dynamics of <span class="math notranslate nohighlight">\(c_t\)</span> and <span class="math notranslate nohighlight">\(a_t\)</span> for different <span class="math notranslate nohighlight">\(\gamma\)</span> values. Analize theoretically and graphically.</p></li>
-<li><p>Present the Lagrangean, and the FOC and the Euler equations for the consumption-saving model.</p></li>
-<li><p>Using your fast method from 1-5, solve the consumption-saving model using a CARA utility function <span class="math notranslate nohighlight">\(u(c)=\frac{1-e^{ac}}{a}\)</span> for <span class="math notranslate nohighlight">\(a\neq 0\)</span>. Plot the solution for <span class="math notranslate nohighlight">\(c_t\)</span> and <span class="math notranslate nohighlight">\(a_t\)</span> and compare with the solution of the CRRA utility.</p></li>
-</ol>
-</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1009,13 +996,22 @@ In a T=3 problem:</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="6_solow_old.html"
+       href="6_solow_homework.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Review of the Solow model</p>
+        <p class="prev-next-title">Homework</p>
       </div>
+    </a>
+    <a class="right-next"
+       href="7_consumption_homework.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Homework</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -1039,7 +1035,6 @@ In a T=3 problem:</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constraint-minimization">Constraint minimization</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equation-system-using-foc">Equation system using FOC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Equation system using FOC</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homework">Homework</a></li>
 </ul>
 </li>
 </ul>

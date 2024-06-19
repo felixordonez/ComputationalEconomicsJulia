@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>ComputationalEconomicsJulia &#8212; Computational Economics with Julia</title>
+    <title>Homework &#8212; Computational Economics with Julia</title>
   
   
   
@@ -62,9 +62,13 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'README';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '6_solow_homework';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Consumption-Saving model" href="7_solutionmethod.html" />
+    <link rel="prev" title="Review of the Solow model" href="6_solow_new.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -174,7 +178,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="0_software_installation.html">Software installation: Julia and Visual Studio Code</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1_github.html">Github and VSCode</a></li>
 <li class="toctree-l1"><a class="reference internal" href="2_first_codes.html">First codes</a></li>
@@ -182,8 +186,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="4_fundamental_types.html">Arrays, Tuples, Ranges, and Other Fundamental Types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="5_functions_conditionals.html">Functions, conditionals, loops, and intro to numerica methods</a></li>
 <li class="toctree-l1"><a class="reference internal" href="6_solow_new.html">Review of the Solow model</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Homework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="7_solutionmethod.html">Consumption-Saving model</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="7_consumption_homework.html">Homework</a></li>
 </ul>
 
     </div>
@@ -255,7 +261,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2F6_solow_homework.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -285,7 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/README.md" target="_blank"
+      <li><a href="_sources/6_solow_homework.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -295,7 +301,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -356,7 +362,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -367,11 +375,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>ComputationalEconomicsJulia</h1>
+    <h1>Homework</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-case-technology-and-demographic-change">General case: technology and demographic change</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -381,9 +397,24 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="computationaleconomicsjulia">
-<h1>ComputationalEconomicsJulia<a class="headerlink" href="#computationaleconomicsjulia" title="Permalink to this heading">#</a></h1>
-<p>Este curso tiene por objetivo estudiar modelos económicos y entender sus fundamentos en base a aplicaciones computacionales desarrolladas en Julia. El enfoque es práctico: comenzar con un problema económico, seleccionar una técnica numérica apropiada para analizarlo, aplicar la técnica al problema y presentar sus hallazgos.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="homework">
+<h1>Homework<a class="headerlink" href="#homework" title="Permalink to this heading">#</a></h1>
+<section id="general-case-technology-and-demographic-change">
+<h2>General case: technology and demographic change<a class="headerlink" href="#general-case-technology-and-demographic-change" title="Permalink to this heading">#</a></h2>
+<p>Part 1. Consider a production function <span class="math notranslate nohighlight">\(A_tF(K_t,L_t)=A_tK_t^\alpha L_t^{1-\alpha}\)</span>. With a productivity growth rate of g.This allows us some conveniences for the stationary model. Therefore, the capital motion law is:</p>
+<div class="math notranslate nohighlight">
+\[K_{t+1}=(1-\delta)K_t + sA_tF(K_t,L_t)\]</div>
+<p>Using <span class="math notranslate nohighlight">\(\frac{A_{t+1}-A_t}{A_t}=g\)</span> and <span class="math notranslate nohighlight">\(\frac{L_{t+1}-L_t}{L_t}=n\)</span> and considering <span class="math notranslate nohighlight">\(k_t=\frac{K_t}{A_tL_t}\)</span></p>
+<ol class="arabic simple">
+<li><p>Derive a theoretical function for <span class="math notranslate nohighlight">\(k_{t+1}=g(k_{t})\)</span> where <span class="math notranslate nohighlight">\(g(k_{t})\)</span> also depends on <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(g\)</span></p></li>
+<li><p>Derive a theoretical function for the steady state of capital such tha <span class="math notranslate nohighlight">\(k^*=h(k^*)\)</span> whereh<span class="math notranslate nohighlight">\(k^*\)</span> also depends on <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(g\)</span></p></li>
+<li><p>Write a function in Julia to determine  <span class="math notranslate nohighlight">\(k_{t+1}=g(k_{t})\)</span> for any grid of <span class="math notranslate nohighlight">\(k_t\)</span> and any set of coefficients (use the ones in the lectures)</p></li>
+<li><p>Write a function in Julia to determine the steady state of <span class="math notranslate nohighlight">\(k^*=h(k^*)\)</span>.</p></li>
+<li><p>Simulate in Julia  <span class="math notranslate nohighlight">\(k_{t+1}=g(k_{t})\)</span> and TEST it converges to the value predicted by <span class="math notranslate nohighlight">\(h(k^*)\)</span>.</p></li>
+<li><p>Using  <span class="math notranslate nohighlight">\(k_{t+1}=g(k_{t})\)</span> in 3, simulate convergence over time for different values of initial capital <span class="math notranslate nohighlight">\(k_0\)</span></p></li>
+<li><p>Using  <span class="math notranslate nohighlight">\(k_{t+1}=g(k_{t})\)</span> in 3, simulate convergence over time for different values of initial capital <span class="math notranslate nohighlight">\(k_0\)</span> assesing the implications of different values of <span class="math notranslate nohighlight">\(n\)</span>, more specifically, <span class="math notranslate nohighlight">\(n=0, n=0.1, n=1\)</span>. Explain the intution</p></li>
+</ol>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -395,16 +426,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "julia-1.10-1.10"
         },
         kernelOptions: {
-            name: "python3",
+            name: "julia-1.10-1.10",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'julia-1.10-1.10'</script>
 
                 </article>
               
@@ -416,6 +447,24 @@ document.write(`
                 <footer class="prev-next-footer">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="6_solow_new.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Review of the Solow model</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="7_solutionmethod.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Consumption-Saving model</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -423,7 +472,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-case-technology-and-demographic-change">General case: technology and demographic change</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
