@@ -10,6 +10,8 @@ chapters:
 - file: 3_solow
 - file: 4_fundamental_types
 - file: 5_functions_conditionals
-- file: 6_solow_old
-#- file: 6_solow_homework
+- file: 6_solow_new
+- file: 6_solow_homework
 - file: 7_solutionmethod
+- file: 7_consumption_homework
+- file: 8_Cass_Koopmans
