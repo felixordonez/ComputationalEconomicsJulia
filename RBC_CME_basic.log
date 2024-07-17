@@ -1,9 +1,9 @@
 Dynare version: 0.9.5
-2024-07-16T22:05:44.260: Starting @dynare ./RBC_CME_basic.mod
+2024-07-17T09:29:30.993: Starting @dynare ./RBC_CME_basic.mod
 ["RBC_CME_basic.mod", "language=julia", "json=compute"]
 Dynare preprocessor version: 6.4.0+0
-2024-07-16T22:05:44.464: End of preprocessing
-2024-07-16T22:05:44.512: Start parse_statements!
+2024-07-17T09:29:31.155: End of preprocessing
+2024-07-17T09:29:31.173: Start parse_statements!
   Steady state
 
 ────┬─────────
@@ -84,7 +84,7 @@ Dynare preprocessor version: 6.4.0+0
  Pi │ 0.9478   0.898  0.8505  0.8052   0.762
 ────┴────────────────────────────────────────
 
-2024-07-16T22:05:46.463: End parser
+2024-07-17T09:29:32.379: End parser
 Results of Nonlinear Solver Algorithm
  * Algorithm: Trust-region with dogleg and autoscaling
  * Inf-norm of residuals: 0.000000
