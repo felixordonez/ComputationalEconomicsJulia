@@ -1,0 +1,35 @@
+{"static_model": {"model_local_variables": [], "external_functions_temporary_terms_": [], "temporary_terms_": [{"temporary_term": "T13", "value": "beta/c"}
+, {"temporary_term": "T19", "value": "k^(alpha-1)"}
+, {"temporary_term": "T23", "value": "alpha*A*T19+1-delta"}
+, {"temporary_term": "T31", "value": "k^alpha"}
+, {"temporary_term": "T32", "value": "A*T31"}
+], 
+"residuals":[
+{"residual": {"lhs": "1/c", "rhs": "beta/c*(alpha*A*k^(alpha-1)+1-delta)"}}
+, {"residual": {"lhs": "1/c", "rhs": "beta/c*R/Pi"}}
+, {"residual": {"lhs": "A*k^alpha", "rhs": "c+k-k*(1-delta)"}}
+, {"residual": {"lhs": "y", "rhs": "A*k^alpha"}}
+, {"residual": {"lhs": "beta*R", "rhs": "(Pi/Pibar)^phi_pi"}}
+, {"residual": {"lhs": "A", "rhs": "exp(z)"}}
+, {"residual": {"lhs": "z", "rhs": "z*rhoz+eps_z"}}
+
+]
+, "external_functions_temporary_terms_jacobian": [], "temporary_terms_jacobian": [{"temporary_term": "T66", "value": "A*get_power_deriv(k,alpha,1)"}
+], "jacobian": {  "nrows": 7, "ncols": 7, "entries": [{"eq": 1, "col": 2, "var": "c", "val": "(-1)/(c*c)-T23*(-beta)/(c*c)"}
+, {"eq": 1, "col": 3, "var": "k", "val": "(-(T13*alpha*A*get_power_deriv(k,alpha-1,1)))"}
+, {"eq": 1, "col": 4, "var": "A", "val": "(-(T13*alpha*T19))"}
+, {"eq": 2, "col": 2, "var": "c", "val": "(-1)/(c*c)-R/Pi*(-beta)/(c*c)"}
+, {"eq": 2, "col": 6, "var": "R", "val": "(-(T13*1/Pi))"}
+, {"eq": 2, "col": 7, "var": "Pi", "val": "(-(T13*(-R)/(Pi*Pi)))"}
+, {"eq": 3, "col": 2, "var": "c", "val": "(-1)"}
+, {"eq": 3, "col": 3, "var": "k", "val": "T66-(1-(1-delta))"}
+, {"eq": 3, "col": 4, "var": "A", "val": "T31"}
+, {"eq": 4, "col": 1, "var": "y", "val": "1"}
+, {"eq": 4, "col": 3, "var": "k", "val": "(-T66)"}
+, {"eq": 4, "col": 4, "var": "A", "val": "(-T31)"}
+, {"eq": 5, "col": 6, "var": "R", "val": "beta"}
+, {"eq": 5, "col": 7, "var": "Pi", "val": "(-(1/Pibar*get_power_deriv(Pi/Pibar,phi_pi,1)))"}
+, {"eq": 6, "col": 4, "var": "A", "val": "1"}
+, {"eq": 6, "col": 5, "var": "z", "val": "(-exp(z))"}
+, {"eq": 7, "col": 5, "var": "z", "val": "1-rhoz"}
+]}, "external_functions_temporary_terms_hessian": [], "temporary_terms_hessian": [], "hessian": {  "nrows": 7, "ncols": 49, "entries": []}, "external_functions_temporary_terms_third_derivative": [], "temporary_terms_third_derivative": [], "third_derivative": {  "nrows": 7, "ncols": 343, "entries": []}}}

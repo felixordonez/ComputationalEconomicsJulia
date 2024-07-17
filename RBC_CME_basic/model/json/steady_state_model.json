@@ -1,0 +1,8 @@
+{"steady_state_model": [{"lhs": "k", "rhs":"((1/beta-(1-delta))/alpha)^(1/(alpha-1))"}
+,{"lhs": "y", "rhs":"k^alpha"}
+,{"lhs": "c", "rhs":"y-delta*k"}
+,{"lhs": "R", "rhs":"1/beta"}
+,{"lhs": "Pi", "rhs":"Pibar"}
+,{"lhs": "A", "rhs":"1"}
+,{"lhs": "z", "rhs":"0"}
+]}
