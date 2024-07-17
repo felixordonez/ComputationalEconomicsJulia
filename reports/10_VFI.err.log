@@ -18,13 +18,37 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-using Dynare, Plots
-context = @dynare "./RBC_CME_basic.mod";
+using Plots, Parameters
+
+function params(; γ = 0.5,
+    β = 0.95,
+    a0 = 100.0,
+    TT = 200)
+
+    return (γ=γ, β=β, a0=a0, TT=TT)
+end
+
+function consumption!(p, c_t)
+    @unpack TT, β, γ, a0 = p
+
+    # Calculate the time path of consumption
+    for it in 1:TT
+        c_t[it] = β^(it * γ) * (1.0 - β^γ) * a0
+    end
+end
+
+p = params(a0=100)
+c_t = zeros(p.TT + 1)
+consumption!(p, c_t)
+
+# Plotting
+plot(c_t, xlabel="Time t", ylabel="Consumption c_t", legend=false)
+
 ------------------
 
 
-ArgumentError: Package Dynare not found in current path.
-- Run `import Pkg; Pkg.add("Dynare")` to install the Dynare package.
+ArgumentError: Package Plots not found in current path.
+- Run `import Pkg; Pkg.add("Plots")` to install the Plots package.
 
 Stacktrace:
  [1] macro expansion
