@@ -1423,53 +1423,6 @@ $<span class="math notranslate nohighlight">\(
 </ol>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span><span class="p">,</span><span class="w"> </span><span class="n">Roots</span>
-
-
-<span class="k">function</span><span class="w"> </span><span class="n">params</span><span class="p">(;</span>
-<span class="w">    </span><span class="n">β</span><span class="o">=</span><span class="mf">0.96</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">γ</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">a_grid_min</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">a_grid_max</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">a_grid_size</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span><span class="w"> </span>
-<span class="w">    </span><span class="n">crit</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">,</span>
-<span class="w">    </span><span class="n">itermax</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-
-<span class="w">    </span><span class="n">a_grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">(</span><span class="n">a_grid_min</span><span class="p">,</span><span class="w"> </span><span class="n">stop</span><span class="o">=</span><span class="n">a_grid_max</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="o">=</span><span class="n">a_grid_size</span><span class="p">)</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">β</span><span class="o">=</span><span class="n">β</span><span class="p">,</span><span class="w"> </span><span class="n">γ</span><span class="o">=</span><span class="n">γ</span><span class="p">,</span><span class="w"> </span><span class="n">a_grid</span><span class="o">=</span><span class="n">a_grid</span><span class="p">,</span><span class="w"> </span><span class="n">crit</span><span class="o">=</span><span class="n">crit</span><span class="p">,</span><span class="w"> </span><span class="n">itermax</span><span class="o">=</span><span class="n">itermax</span><span class="p">)</span>
-<span class="k">end</span>
-
-<span class="k">function</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
-<span class="w">    </span><span class="nd">@unpack</span><span class="w"> </span><span class="n">γ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">c</span><span class="o">&lt;</span><span class="mi">0</span><span class="w"> </span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="mi">6666</span>
-<span class="w">    </span><span class="k">else</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">c</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">γ</span><span class="p">)</span>
-<span class="w">    </span><span class="k">end</span>
-<span class="k">end</span>
-
-
-<span class="k">function</span><span class="w"> </span><span class="n">euler_diff</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">σ</span><span class="p">)</span><span class="w"> </span><span class="c">#c:control, x:estado, σ:función de interpolación</span>
-<span class="w">    </span><span class="nd">@unpack</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span>
-<span class="w">    </span><span class="c"># c = c[1]</span>
-<span class="w">    </span><span class="n">cp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">σ</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="c">#f(a, c(a))</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">β</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">u_prime</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">cp</span><span class="p">)</span>
-<span class="c"># end</span>
-
-
-
-<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">params</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(β = 0.96, γ = 1.5, a_grid = 0.001:0.021:2.5, crit = 0.0001, itermax = 200)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span><span class="p">,</span><span class="w"> </span><span class="n">Roots</span><span class="w"> </span><span class="c">#NLsolve, </span>
 
 <span class="k">function</span><span class="w"> </span><span class="n">params</span><span class="p">(;</span>
